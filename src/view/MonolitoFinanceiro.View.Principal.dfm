@@ -1,7 +1,7 @@
-object Form1: TForm1
+object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'Monolito Financeiro'
   ClientHeight = 442
   ClientWidth = 628
   Color = clBtnFace
@@ -10,5 +10,28 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Menu = MainMenu1
+  Position = poScreenCenter
+  WindowState = wsMaximized
   TextHeight = 15
+  object MainMenu1: TMainMenu
+    Left = 328
+    Top = 184
+    object mnuCadastros: TMenuItem
+      Caption = 'Cadastros'
+      Hint = 'Cadastro do sistema'
+      object nmuCadastroPadrao: TMenuItem
+        Caption = 'Cadastro Padr'#227'o'
+        OnClick = nmuCadastroPadraoClick
+      end
+    end
+    object mnuRelatorios: TMenuItem
+      Caption = 'Relat'#243'rios'
+      Hint = 'Relat'#243'rios do sistema'
+    end
+    object nmuAjuda: TMenuItem
+      Caption = 'Ajuda'
+      Hint = 'Ajuda do sistema'
+    end
+  end
 end

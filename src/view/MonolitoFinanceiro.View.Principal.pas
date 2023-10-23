@@ -4,10 +4,16 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
 
 type
-  TForm1 = class(TForm)
+  TfrmPrincipal = class(TForm)
+    MainMenu1: TMainMenu;
+    mnuCadastros: TMenuItem;
+    mnuRelatorios: TMenuItem;
+    nmuAjuda: TMenuItem;
+    nmuCadastroPadrao: TMenuItem;
+    procedure nmuCadastroPadraoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -15,10 +21,17 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmPrincipal: TfrmPrincipal;
 
 implementation
 
 {$R *.dfm}
+
+uses MonolitoFinanceiro.View.CadastroPadrao;
+
+procedure TfrmPrincipal.nmuCadastroPadraoClick(Sender: TObject);
+begin
+  frmCadastroPadrao.Show;
+end;
 
 end.
