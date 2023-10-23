@@ -4,7 +4,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cadastro Padr'#227'o'
-  ClientHeight = 513
+  ClientHeight = 442
   ClientWidth = 758
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,9 +18,9 @@ object frmCadastroPadrao: TfrmCadastroPadrao
     Left = 0
     Top = 0
     Width = 758
-    Height = 513
+    Height = 442
     Align = alClient
-    ActiveCard = CardPesquisa
+    ActiveCard = CardCadastro
     Caption = 'PnlPrincipal'
     TabOrder = 0
     ExplicitLeft = 136
@@ -31,7 +31,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
       Left = 1
       Top = 1
       Width = 756
-      Height = 511
+      Height = 440
       Caption = 'Cadastro'
       CardIndex = 0
       TabOrder = 0
@@ -41,13 +41,12 @@ object frmCadastroPadrao: TfrmCadastroPadrao
       ExplicitHeight = 41
       object Panel1: TPanel
         Left = 0
-        Top = 430
+        Top = 359
         Width = 756
         Height = 81
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitTop = 359
         object btnCancelar: TButton
           Left = 640
           Top = 0
@@ -86,7 +85,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
       Left = 1
       Top = 1
       Width = 756
-      Height = 511
+      Height = 440
       Caption = 'Pesquisa'
       CardIndex = 1
       TabOrder = 1
@@ -98,10 +97,11 @@ object frmCadastroPadrao: TfrmCadastroPadrao
         Left = 0
         Top = 0
         Width = 756
-        Height = 89
+        Height = 81
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitTop = -6
         object Label1: TLabel
           Left = 0
           Top = 5
@@ -121,7 +121,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Left = 640
           Top = 0
           Width = 116
-          Height = 89
+          Height = 81
           Align = alRight
           Cancel = True
           Caption = 'Pesquisar'
@@ -135,18 +135,17 @@ object frmCadastroPadrao: TfrmCadastroPadrao
       end
       object pnlPesquisaButoes: TPanel
         Left = 0
-        Top = 422
+        Top = 359
         Width = 756
-        Height = 89
+        Height = 81
         Align = alBottom
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitTop = 351
         object btnFechar: TButton
           Left = 640
           Top = 0
           Width = 116
-          Height = 89
+          Height = 81
           Align = alRight
           Cancel = True
           Caption = 'Fechar'
@@ -162,7 +161,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Left = 348
           Top = 0
           Width = 116
-          Height = 89
+          Height = 81
           Align = alLeft
           Cancel = True
           Caption = 'Imprimir'
@@ -174,13 +173,12 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           TabOrder = 1
           ExplicitLeft = 232
           ExplicitTop = -8
-          ExplicitHeight = 81
         end
         object Button1: TButton
           Left = 0
           Top = 0
           Width = 116
-          Height = 89
+          Height = 81
           Align = alLeft
           Cancel = True
           Caption = 'Incluir'
@@ -192,13 +190,12 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           OnClick = Button1Click
           ExplicitLeft = 176
           ExplicitTop = 6
-          ExplicitHeight = 81
         end
         object Button2: TButton
           Left = 116
           Top = 0
           Width = 116
-          Height = 89
+          Height = 81
           Align = alLeft
           Cancel = True
           Caption = 'Alterar'
@@ -211,13 +208,12 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           OnClick = Button2Click
           ExplicitLeft = 232
           ExplicitTop = -8
-          ExplicitHeight = 81
         end
         object Button3: TButton
           Left = 232
           Top = 0
           Width = 116
-          Height = 89
+          Height = 81
           Align = alLeft
           Cancel = True
           Caption = 'Excluir'
@@ -228,14 +224,13 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Images = ImageList1
           TabOrder = 4
           ExplicitTop = -8
-          ExplicitHeight = 81
         end
       end
       object pnlGrid: TPanel
         Left = 0
-        Top = 89
+        Top = 81
         Width = 756
-        Height = 333
+        Height = 278
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 2
@@ -247,7 +242,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Left = 0
           Top = 0
           Width = 756
-          Height = 333
+          Height = 278
           Align = alClient
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
