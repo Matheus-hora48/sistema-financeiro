@@ -3,7 +3,7 @@ object frmSplash: TfrmSplash
   Top = 0
   BorderStyle = bsNone
   Caption = 'frmSplash'
-  ClientHeight = 480
+  ClientHeight = 450
   ClientWidth = 640
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object frmSplash: TfrmSplash
     Left = 0
     Top = 0
     Width = 640
-    Height = 480
+    Height = 450
     Align = alClient
     BevelOuter = bvNone
     Color = clHotLight
@@ -1548,7 +1548,7 @@ object frmSplash: TfrmSplash
     end
     object ProgressBar: TProgressBar
       Left = 0
-      Top = 459
+      Top = 429
       Width = 640
       Height = 21
       Align = alBottom
@@ -1559,7 +1559,7 @@ object frmSplash: TfrmSplash
     end
     object Panel1: TPanel
       Left = 0
-      Top = 414
+      Top = 384
       Width = 640
       Height = 45
       Align = alBottom

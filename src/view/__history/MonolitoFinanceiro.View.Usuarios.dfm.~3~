@@ -1,0 +1,43 @@
+inherited frmUsuarios: TfrmUsuarios
+  Caption = 'Cadastro Usu'#225'rios'
+  ClientWidth = 758
+  TextHeight = 28
+  inherited PnlPrincipal: TCardPanel
+    Width = 758
+    inherited CardCadastro: TCard
+      Height = 502
+      ExplicitLeft = 1
+      ExplicitTop = 1
+      ExplicitWidth = 756
+      ExplicitHeight = 511
+      inherited Panel1: TPanel
+        Top = 421
+        ExplicitTop = 430
+        inherited btnSalvar: TButton
+          ExplicitLeft = 524
+        end
+      end
+    end
+    inherited CardPesquisa: TCard
+      Height = 502
+      inherited pnlPesquisaButoes: TPanel
+        Top = 413
+      end
+      inherited pnlGrid: TPanel
+        Height = 324
+        inherited DBGrid1: TDBGrid
+          DataSource = DataSource1
+        end
+      end
+    end
+  end
+  inherited ImageList1: TImageList
+    Left = 577
+    Top = 354
+  end
+  object DataSource1: TDataSource
+    DataSet = DataModule1.FDQuery1
+    Left = 657
+    Top = 354
+  end
+end

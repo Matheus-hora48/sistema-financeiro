@@ -22,8 +22,8 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'Cadastros'
       Hint = 'Cadastro do sistema'
       object nmuCadastroPadrao: TMenuItem
-        Caption = 'Cadastro Padr'#227'o'
-        OnClick = nmuCadastroPadraoClick
+        Caption = 'Usu'#225'rios'
+        OnClick = nmuUsuariosClick
       end
     end
     object mnuRelatorios: TMenuItem
