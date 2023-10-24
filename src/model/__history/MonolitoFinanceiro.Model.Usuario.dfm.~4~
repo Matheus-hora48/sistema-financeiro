@@ -19,7 +19,6 @@ object dmUsuarios: TdmUsuarios
   end
   object dspUsuarios: TDataSetProvider
     DataSet = sqlUsuarios
-    Options = [poAllowCommandText, poUseQuoteChar]
     Left = 144
     Top = 32
   end
