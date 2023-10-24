@@ -3,12 +3,6 @@ object dmConexao: TdmConexao
   Height = 283
   Width = 566
   PixelsPerInch = 120
-  object FDQuery1: TFDQuery
-    SQL.Strings = (
-      'select * from usuarios')
-    Left = 40
-    Top = 120
-  end
   object SQLConexao: TFDConnection
     Params.Strings = (
       'DriverID=SQLite')
