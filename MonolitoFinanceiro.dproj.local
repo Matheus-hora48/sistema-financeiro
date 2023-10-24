@@ -2,8 +2,14 @@
 <BorlandProject>
   <Transactions>
     <Transaction>2023/10/23 16:33:43.222,=C:\Users\mathe\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/10/23 16:34:35.739,C:\Users\mathe\Documents\GitHub\sistema-financeiro\src\view\MonolitoFinanceiro.View.Principal.pas=C:\Users\mathe\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2023/10/23 16:34:35.739,C:\Users\mathe\Documents\GitHub\sistema-financeiro\src\view\MonolitoFinanceiro.View.Principal.dfm=C:\Users\mathe\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/10/23 16:34:35.739,C:\Users\mathe\Documents\GitHub\sistema-financeiro\src\view\MonolitoFinanceiro.View.Principal.pas=C:\Users\mathe\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2023/10/23 16:34:55.455,C:\Users\mathe\Documents\GitHub\sistema-financeiro\MonolitoFinanceiro.dproj=C:\Users\mathe\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2023/10/23 16:51:56.685,=C:\Users\mathe\Documents\GitHub\sistema-financeiro\Unit1.pas</Transaction>
+    <Transaction>2023/10/23 16:52:44.276,C:\Users\mathe\Documents\GitHub\sistema-financeiro\src\view\MonolitoFinanceiro.View.CadastroPadrao.pas=C:\Users\mathe\Documents\GitHub\sistema-financeiro\Unit1.pas</Transaction>
+    <Transaction>2023/10/23 16:52:44.276,C:\Users\mathe\Documents\GitHub\sistema-financeiro\src\view\MonolitoFinanceiro.View.CadastroPadrao.dfm=C:\Users\mathe\Documents\GitHub\sistema-financeiro\Unit1.dfm</Transaction>
+    <Transaction>2023/10/23 17:58:53.906,=C:\Users\mathe\Documents\GitHub\sistema-financeiro\Unit1.pas</Transaction>
+    <Transaction>2023/10/23 17:59:34.689,C:\Users\mathe\Documents\GitHub\sistema-financeiro\src\view\MonolitoFinanceiro.View.Splash.pas=C:\Users\mathe\Documents\GitHub\sistema-financeiro\Unit1.pas</Transaction>
+    <Transaction>2023/10/23 17:59:34.689,C:\Users\mathe\Documents\GitHub\sistema-financeiro\src\view\MonolitoFinanceiro.View.Splash.dfm=C:\Users\mathe\Documents\GitHub\sistema-financeiro\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>
