@@ -30,7 +30,7 @@ uses MonolitoFinanceiro.Model.Conexao;
   procedure TfrmUsuarios.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
-    dmConexao.FDQuery1.Connection := dmConexao.SQLConexao;
+  dmConexao.FDQuery1.Connection := dmConexao.SQLConexao;
   dmConexao.FDQuery1.Close;
   dmConexao.FDQuery1.SQL.Clear;
   dmConexao.FDQuery1.SQL.Add('select * from usuarios');
