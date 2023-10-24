@@ -7,11 +7,12 @@ object dmConexao: TdmConexao
     SQL.Strings = (
       'select * from usuarios')
     Left = 40
-    Top = 128
+    Top = 120
   end
   object SQLConexao: TFDConnection
     Params.Strings = (
       'DriverID=SQLite')
+    LoginPrompt = False
     Left = 40
     Top = 40
   end

@@ -54,8 +54,13 @@ begin
     begin
       if ListaParametros[Contador].IndexOf('=') > 0 then
       begin
+
         ParametroNome := ListaParametros[Contador].Split(['='])[0].Trim;
         ParametroValor := ListaParametros[Contador].Split(['='])[1].Trim;
+
+        if ParametroNome = 'DriverID' then
+           SqlConexao.DriverName := ParametroValor;
+
         SqlConexao.Params.Add(ParametroNome + '=' + ParametroValor);
       end;
     end;
@@ -66,7 +71,7 @@ end;
 
 procedure TdmConexao.Conectar;
 begin
-  SqlConexao.Connected;
+  SqlConexao.Connected := True;
 end;
 
 procedure TdmConexao.DataModuleCreate(Sender: TObject);

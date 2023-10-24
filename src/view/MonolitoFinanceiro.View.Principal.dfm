@@ -16,8 +16,8 @@ object frmPrincipal: TfrmPrincipal
   OnCreate = FormCreate
   TextHeight = 15
   object MainMenu1: TMainMenu
-    Left = 328
-    Top = 184
+    Left = 504
+    Top = 368
     object mnuCadastros: TMenuItem
       Caption = 'Cadastros'
       Hint = 'Cadastro do sistema'
