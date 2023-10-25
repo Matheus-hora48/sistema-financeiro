@@ -1,0 +1,61 @@
+unit MonolitoFinanceiro.View.Login;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.StdCtrls;
+
+type
+  TfrmLogin = class(TForm)
+    pnlEsquerda: TPanel;
+    Image1: TImage;
+    pnlPrincipal: TPanel;
+    Panel1: TPanel;
+    lblNameAplicacao: TLabel;
+    Label1: TLabel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    edtLogin: TEdit;
+    lblUsuario: TLabel;
+    Panel4: TPanel;
+    lblSenha: TLabel;
+    edtSenha: TEdit;
+    btnEntrar: TButton;
+    procedure btnEntrarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogin: TfrmLogin;
+
+implementation
+
+{$R *.dfm}
+
+uses MonolitoFinanceiro.Model.Usuario;
+
+procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+begin
+  if Trim(edtLogin.Text) = '' then
+  begin
+    edtLogin.SetFocus;
+    Application.MessageBox('Informe o seu usuário.', 'Atenção', MB_OK + MB_ICONWARNING);
+    Abort;
+  end;
+  if Trim(edtSenha.Text) = '' then
+  begin
+    edtSenha.SetFocus;
+    Application.MessageBox('Informe o sua senha.', 'Atenção', MB_OK + MB_ICONWARNING);
+    Abort;
+  end;
+
+  dmUsuarios.EfetuarLogin(Trim(edtLogin.Text), Trim(edtSenha.Text) );
+
+end;
+
+end.

@@ -1,4 +1,6 @@
 object dmUsuarios: TdmUsuarios
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 343
   Width = 655
   PixelsPerInch = 120

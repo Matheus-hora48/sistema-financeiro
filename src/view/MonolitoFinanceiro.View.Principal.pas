@@ -29,7 +29,7 @@ implementation
 {$R *.dfm}
 
 uses MonolitoFinanceiro.View.CadastroPadrao, MonolitoFinanceiro.View.Splash,
-  MonolitoFinanceiro.View.Usuarios;
+  MonolitoFinanceiro.View.Usuarios, MonolitoFinanceiro.View.Login;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
@@ -38,6 +38,15 @@ begin
     frmSplash.ShowModal;
   finally
     FreeAndNil(frmSplash);
+  end;
+  frmLogin := TFrmLogin.Create(nil);
+  try
+    frmLogin.ShowModal;
+    if frmLogin.ModalResult <> mrOK then
+      Application.Terminate;
+
+  finally
+    FreeAndNil(frmLogin);
   end;
 end;
 
