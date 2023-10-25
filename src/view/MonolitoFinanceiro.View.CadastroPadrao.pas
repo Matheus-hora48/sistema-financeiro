@@ -22,16 +22,17 @@ type
     ImageList1: TImageList;
     btnFechar: TButton;
     btnImprimir: TButton;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    btnIncluir: TButton;
+    btnAlterar: TButton;
+    btnExcluir: TButton;
     Panel1: TPanel;
     btnCancelar: TButton;
     btnSalvar: TButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,14 +56,19 @@ begin
   Close;
 end;
 
-procedure TfrmCadastroPadrao.Button1Click(Sender: TObject);
+procedure TfrmCadastroPadrao.btnIncluirClick(Sender: TObject);
 begin
   pnlPrincipal.ActiveCard := cardCadastro;
 end;
 
-procedure TfrmCadastroPadrao.Button2Click(Sender: TObject);
+procedure TfrmCadastroPadrao.btnAlterarClick(Sender: TObject);
 begin
   pnlPrincipal.ActiveCard := cardCadastro;
+end;
+
+procedure TfrmCadastroPadrao.FormShow(Sender: TObject);
+begin
+  pnlPrincipal.ActiveCard := CardPesquisa;
 end;
 
 end.

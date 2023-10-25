@@ -1,0 +1,21 @@
+unit MonolitoFinanceiro.Utilitarios;
+
+interface
+type
+  TUtilitario = class
+    class function GetID : String;
+  end;
+
+implementation
+
+{ TUtilitario }
+
+uses
+  System.SysUtils;
+
+class function TUtilitario.GetID: String;
+begin
+  Result := TGUID.NewGuid
+end;
+
+end.
