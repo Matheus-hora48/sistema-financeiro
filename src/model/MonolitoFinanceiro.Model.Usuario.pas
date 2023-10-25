@@ -22,13 +22,13 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
-    FEntidadeUsuario : TModelEntidadeUsuario;
+    FEntidadeUsuario : TModeEntidadeUsuario;
     { Private declarations }
   public
     { Public declarations }
     function TemLoginCadastrado (Login: String; ID: String) : Boolean;
     procedure EfetuarLogin(Login : String; Senha: String);
-    function GetUsuarioLogado : TModelEntidadeUsuario;
+    function GetUsuarioLogado : TModeEntidadeUsuario;
 
   end;
 
@@ -48,7 +48,7 @@ uses MonolitoFinanceiro.Model.Conexao,
 
 procedure TdmUsuarios.DataModuleCreate(Sender: TObject);
 begin
-  FEntidadeUsuario := TModelEntidadeUsuario.Create;
+  FEntidadeUsuario := TModeEntidadeUsuario.Create;
 end;
 
 procedure TdmUsuarios.DataModuleDestroy(Sender: TObject);

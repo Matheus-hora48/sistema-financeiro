@@ -70,9 +70,9 @@ begin
     SQLConsulta.Open;
 
     if SQLConsulta.IsEmpty then
-      raise Exception.Create('Usu√°rio e/ou senha inv√°lidos');
+      raise Exception.Create('Usu·rio e/ou senha inv·lidos');
     if SQLConsulta.FieldByName('STATUS').AsString <> 'A' then
-      raise Exception.Create('Usu√°rio bloqueado, favor entrar em contato com o administrador');
+      raise Exception.Create('Usu·rio bloqueado, favor entrar em contato com o administrador');
 
     FEntidadeUsuario.ID := SQLConsulta.ParamByName('ID').AsString;
     FEntidadeUsuario.NOME := SQLConsulta.ParamByName('NOME').AsString;
