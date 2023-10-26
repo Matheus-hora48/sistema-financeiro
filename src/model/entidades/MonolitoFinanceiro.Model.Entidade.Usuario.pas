@@ -2,7 +2,7 @@ unit MonolitoFinanceiro.Model.Entidade.Usuario;
 
 interface
 type
-  TModeEntidadeUsuario = class
+  TModelEntidadeUsuario = class
   private
     FLogin: String;
     FNome: String;
@@ -16,21 +16,22 @@ type
     property ID : String read FID write SetID;
   end;
 
+
 implementation
 
 { TModeEntidadeUsuario }
 
-procedure TModeEntidadeUsuario.SetID(const Value: String);
+procedure TModelEntidadeUsuario.SetID(const Value: String);
 begin
   FID := Value;
 end;
 
-procedure TModeEntidadeUsuario.SetLogin(const Value: String);
+procedure TModelEntidadeUsuario.SetLogin(const Value: String);
 begin
   FLogin := Value;
 end;
 
-procedure TModeEntidadeUsuario.SetNome(const Value: String);
+procedure TModelEntidadeUsuario.SetNome(const Value: String);
 begin
   FNome:= Value;
 end;

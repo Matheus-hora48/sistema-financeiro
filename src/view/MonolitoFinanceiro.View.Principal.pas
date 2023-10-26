@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ComCtrls, Vcl.ExtCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -13,8 +13,11 @@ type
     mnuRelatorios: TMenuItem;
     nmuAjuda: TMenuItem;
     nmuCadastroPadrao: TMenuItem;
+    StatusBar1: TStatusBar;
+    Timer1: TTimer;
     procedure nmuUsuariosClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,7 +32,8 @@ implementation
 {$R *.dfm}
 
 uses MonolitoFinanceiro.View.CadastroPadrao, MonolitoFinanceiro.View.Splash,
-  MonolitoFinanceiro.View.Usuarios, MonolitoFinanceiro.View.Login;
+  MonolitoFinanceiro.View.Usuarios, MonolitoFinanceiro.View.Login,
+  MonolitoFinanceiro.Model.Usuario;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
@@ -48,11 +52,17 @@ begin
   finally
     FreeAndNil(frmLogin);
   end;
+  StatusBar1.Panels.Items[1].Text := 'Usuário: ' + dmUsuarios.GetUsuarioLogado.Nome;
 end;
 
 procedure TfrmPrincipal.nmuUsuariosClick(Sender: TObject);
 begin
   frmUsuarios.Show;
+end;
+
+procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
+begin
+  StatusBar1.Panels.Items[0].Text := DateTimeToStr(now);
 end;
 
 end.

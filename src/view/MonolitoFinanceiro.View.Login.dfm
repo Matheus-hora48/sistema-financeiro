@@ -13,6 +13,7 @@ object frmLogin: TfrmLogin
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poScreenCenter
+  OnShow = FormShow
   TextHeight = 28
   object pnlEsquerda: TPanel
     Left = 0
@@ -321,7 +322,7 @@ object frmLogin: TfrmLogin
         Height = 48
         Align = alTop
         Caption = 'Entrar'
-        TabOrder = 1
+        TabOrder = 2
         OnClick = btnEntrarClick
         ExplicitWidth = 604
       end
@@ -334,7 +335,7 @@ object frmLogin: TfrmLogin
         Align = alTop
         Alignment = taLeftJustify
         BevelOuter = bvNone
-        TabOrder = 2
+        TabOrder = 1
         ExplicitWidth = 604
         object lblSenha: TLabel
           Left = 0
@@ -351,8 +352,9 @@ object frmLogin: TfrmLogin
           Width = 610
           Height = 36
           Align = alTop
+          PasswordChar = '*'
           TabOrder = 0
-          ExplicitWidth = 604
+          ExplicitTop = 34
         end
       end
     end
