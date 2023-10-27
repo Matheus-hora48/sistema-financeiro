@@ -30,6 +30,9 @@ type
     function TemLoginCadastrado (Login: String; ID: String) : Boolean;
     procedure EfetuarLogin(Login : String; Senha: String);
     function GetUsuarioLogado : TModelEntidadeUsuario;
+    procedure LimparSenha(IDusuario : String);
+    procedure RedefinirSenha(Usuario : TModelEntidadeUsuario);
+    const TEMP_PASSWORD = '123456';
   end;
 
 var
@@ -39,7 +42,8 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
-uses MonolitoFinanceiro.Model.Conexao;
+uses MonolitoFinanceiro.Model.Conexao,
+BCrypt;
 
 {$R *.dfm}
 
@@ -63,12 +67,13 @@ begin
   try
     SQLConsulta.Connection := dmConexao.SQLConexao;
     SQLConsulta.SQL.Clear;
-    SQLConsulta.SQL.Add('SELECT * FROM USUARIOS WHERE LOGIN = :LOGIN AND SENHA = :SENHA');
+    SQLConsulta.SQL.Add('SELECT * FROM USUARIOS WHERE LOGIN = :LOGIN ');
     SQLConsulta.ParamByName('LOGIN').AsString := LOGIN;
-    SQLConsulta.ParamByName('SENHA').AsString := SENHA;
     SQLConsulta.Open;
 
     if SQLConsulta.IsEmpty then
+      raise Exception.Create('Usuário e/ou senha inválidos');
+    if not  TBCrypt.CompareHash(Senha, SQLConsulta.FieldByName('SENHA').AsString) then
       raise Exception.Create('Usuário e/ou senha inválidos');
     if SQLConsulta.FieldByName('STATUS').AsString <> 'A' then
       raise Exception.Create('Usuário bloqueado, favor entrar em contato com o administrador');
@@ -86,6 +91,30 @@ end;
 function TdmUsuarios.GetUsuarioLogado: TModelEntidadeUsuario;
 begin
   Result := FEntidadeUsuario;
+end;
+
+procedure TdmUsuarios.LimparSenha(IDusuario: String);
+var
+  SQLQuery : TFDQuery;
+begin
+  SQLQuery := TFDQuery.Create(nil);
+  try
+    SQLQuery.Connection := dmConexao.SQLConexao;
+    SQLQuery.SQL.Clear;
+    SQLQuery.SQL.Add('UPDATE USUARIOS SET SENHA_TEMPORARIA = :SENHA_TEMPORARIA, SENHA = :ENHA WHERE ID = :ID');
+    SQLQuery.ParamByName('SENHA_TEMPORARIA').AsString := 's';
+    SQLQuery.ParamByName('SENHA').AsString := TEMP_PASSWORD;
+    SQLQuery.ParamByName('ID').AsString := IDUsuario;
+    SQLQuery.ExecSQL;
+  finally
+    SQLQuery.Close;
+    SQLQuery.Free;
+  end;
+end;
+
+procedure TdmUsuarios.RedefinirSenha(Usuario: TModelEntidadeUsuario);
+begin
+
 end;
 
 function TdmUsuarios.TemLoginCadastrado(Login, ID: String): Boolean;

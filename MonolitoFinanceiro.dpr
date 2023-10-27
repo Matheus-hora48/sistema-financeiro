@@ -11,7 +11,9 @@ uses
   MonolitoFinanceiro.Utilitarios in 'src\util\MonolitoFinanceiro.Utilitarios.pas',
   MonolitoFinanceiro.View.Login in 'src\view\MonolitoFinanceiro.View.Login.pas' {frmLogin},
   MonolitoFinanceiro.Model.Entidade.Usuario in 'src\model\entidades\MonolitoFinanceiro.Model.Entidade.Usuario.pas',
-  MonolitoFinanceiro.Model.Sistema in 'src\model\MonolitoFinanceiro.Model.Sistema.pas' {dmSistema: TDataModule};
+  MonolitoFinanceiro.Model.Sistema in 'src\model\MonolitoFinanceiro.Model.Sistema.pas' {dmSistema: TDataModule},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 

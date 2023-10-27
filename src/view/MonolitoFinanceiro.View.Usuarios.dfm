@@ -1,11 +1,13 @@
 inherited frmUsuarios: TfrmUsuarios
   Caption = 'Cadastro Usu'#225'rios'
-  ExplicitLeft = 3
-  ExplicitTop = 3
+  ClientHeight = 513
+  ClientWidth = 758
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
+    Width = 758
+    Height = 513
+    ActiveCard = CardPesquisa
     inherited CardCadastro: TCard
-      ExplicitLeft = 2
       object lblName: TLabel [0]
         Left = 16
         Top = 40
@@ -37,7 +39,6 @@ inherited frmUsuarios: TfrmUsuarios
       inherited Panel1: TPanel
         inherited btnSalvar: TButton
           OnClick = btnSalvarClick
-          ExplicitLeft = 518
         end
       end
       object edtNome: TEdit
@@ -64,7 +65,7 @@ inherited frmUsuarios: TfrmUsuarios
       object ToggleStatus: TToggleSwitch
         Left = 103
         Top = 163
-        Width = 178
+        Width = 151
         Height = 30
         StateCaptions.CaptionOn = 'Ativo'
         StateCaptions.CaptionOff = 'Bloqueado'
@@ -86,6 +87,7 @@ inherited frmUsuarios: TfrmUsuarios
       inherited pnlGrid: TPanel
         inherited DBGrid1: TDBGrid
           DataSource = DataSource1
+          PopupMenu = PopupMenu1
           Columns = <
             item
               Expanded = False
@@ -119,5 +121,13 @@ inherited frmUsuarios: TfrmUsuarios
     DataSet = dmUsuarios.cdsUsuarios
     Left = 657
     Top = 354
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 617
+    Top = 226
+    object mnuLimparSenha: TMenuItem
+      Caption = 'Limpar Senha'
+      OnClick = mnuLimparSenhaClick
+    end
   end
 end

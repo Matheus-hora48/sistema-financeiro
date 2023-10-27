@@ -21,7 +21,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
     Width = 758
     Height = 513
     Align = alClient
-    ActiveCard = CardPesquisa
+    ActiveCard = CardCadastro
     Caption = 'PnlPrincipal'
     TabOrder = 0
     ExplicitWidth = 752

@@ -2,8 +2,8 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Monolito Financeiro'
-  ClientHeight = 442
-  ClientWidth = 628
+  ClientHeight = 433
+  ClientWidth = 622
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,8 @@ object frmPrincipal: TfrmPrincipal
   TextHeight = 15
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 423
-    Width = 628
+    Top = 414
+    Width = 622
     Height = 19
     Panels = <
       item
@@ -27,9 +27,6 @@ object frmPrincipal: TfrmPrincipal
       item
         Width = 300
       end>
-    ExplicitLeft = 120
-    ExplicitTop = 376
-    ExplicitWidth = 0
   end
   object MainMenu1: TMainMenu
     Left = 504

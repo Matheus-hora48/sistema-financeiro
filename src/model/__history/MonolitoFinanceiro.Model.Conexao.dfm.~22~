@@ -1,0 +1,10 @@
+object dmConexao: TdmConexao
+  OnCreate = DataModuleCreate
+  Height = 283
+  Width = 566
+  PixelsPerInch = 120
+  object SQLConexao: TFDConnection
+    Left = 72
+    Top = 56
+  end
+end

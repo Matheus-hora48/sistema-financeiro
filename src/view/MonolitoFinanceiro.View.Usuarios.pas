@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, MonolitoFinanceiro.View.CadastroPadrao,
   Data.DB, System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls;
+  Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls, Vcl.Menus;
 
 type
   TfrmUsuarios = class(TfrmCadastroPadrao)
@@ -19,12 +19,15 @@ type
     lblLogin: TLabel;
     lblSenha: TLabel;
     lblStatus: TLabel;
+    PopupMenu1: TPopupMenu;
+    mnuLimparSenha: TMenuItem;
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
+    procedure mnuLimparSenhaClick(Sender: TObject);
   private
     { Private declarations }
     procedure LimparCampos;
@@ -39,7 +42,9 @@ implementation
 
 {$R *.dfm}
 
-uses MonolitoFinanceiro.Model.Usuario, MonolitoFinanceiro.Utilitarios;
+uses MonolitoFinanceiro.Model.Usuario,
+MonolitoFinanceiro.Utilitarios,
+BCrypt;
 
 procedure TfrmUsuarios.btnCancelarClick(Sender: TObject);
 begin
@@ -82,6 +87,7 @@ procedure TfrmUsuarios.btnSalvarClick(Sender: TObject);
 var
    LStatus : String;
    Mensagem : String;
+   LHash : String;
 begin
   if Trim(edtNome.Text) = '' then
   begin
@@ -127,10 +133,11 @@ begin
 
   end;
 
+  LHash := TBCrypt.GenerateHash(Trim(edtSenha.Text));
 
   dmUsuarios.cdsUsuariosNome.AsString := Trim(edtNome.Text);
   dmUsuarios.cdsUsuariosLogin.AsString := Trim(edtLogin.Text);
-  dmUsuarios.cdsUsuariosSenha.AsString := Trim(edtSenha.Text);
+  dmUsuarios.cdsUsuariosSenha.AsString := LHash;
   dmUsuarios.cdsUsuariosStatus.AsString := LStatus;
 
   dmUsuarios.cdsUsuarios.Post;
@@ -142,6 +149,8 @@ begin
   inherited;
 
 end;
+
+
 
 procedure TfrmUsuarios.LimparCampos;
 var
@@ -155,6 +164,16 @@ begin
       TToggleSwitch(Components[Contador]).State := tsson;
   end;
 
+end;
+
+procedure TfrmUsuarios.mnuLimparSenhaClick(Sender: TObject);
+begin
+  inherited;
+  if not DataSource1.DataSet.IsEmpty then
+  begin
+    dmUsuarios.LimparSenha(DataSource1.DataSet.FieldByName('ID').AsString);
+    Application.MessageBox(PWideChar(format('Foi definida a senha padrão para o usuário "%s"',[DataSource1.DataSet.FieldByName('NOME').AsString ])), 'Atenção', MB_OK + MB_ICONINFORMATION);
+  end;
 end;
 
 procedure TfrmUsuarios.btnAlterarClick(Sender: TObject);
