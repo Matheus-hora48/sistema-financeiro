@@ -14,7 +14,9 @@ uses
   MonolitoFinanceiro.Model.Sistema in 'src\model\MonolitoFinanceiro.Model.Sistema.pas' {dmSistema: TDataModule},
   Vcl.Themes,
   Vcl.Styles,
-  MonolitoFinanceiro.View.RedefinirSenha in 'src\view\MonolitoFinanceiro.View.RedefinirSenha.pas' {frmRedefinirSenha};
+  MonolitoFinanceiro.View.RedefinirSenha in 'src\view\MonolitoFinanceiro.View.RedefinirSenha.pas' {frmRedefinirSenha},
+  MonolitoFinanceiro.Model.Caixa in 'src\model\MonolitoFinanceiro.Model.Caixa.pas' {dmCaixa: TDataModule},
+  MonolitoFinanceiro.View.Caixa in 'src\view\MonolitoFinanceiro.View.Caixa.pas' {frmCaixa};
 
 {$R *.res}
 
@@ -23,9 +25,11 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TdmConexao, dmConexao);
   Application.CreateForm(TdmUsuarios, dmUsuarios);
+  Application.CreateForm(TdmCaixa, dmCaixa);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmCadastroPadrao, frmCadastroPadrao);
   Application.CreateForm(TfrmUsuarios, frmUsuarios);
   Application.CreateForm(TdmSistema, dmSistema);
+  Application.CreateForm(TfrmCaixa, frmCaixa);
   Application.Run;
 end.

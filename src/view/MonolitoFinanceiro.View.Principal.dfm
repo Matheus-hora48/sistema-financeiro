@@ -31,7 +31,7 @@ object frmPrincipal: TfrmPrincipal
     ExplicitWidth = 616
   end
   object MainMenu1: TMainMenu
-    Left = 536
+    Left = 528
     Top = 288
     object mnuCadastros: TMenuItem
       Caption = 'Cadastros'
@@ -39,6 +39,13 @@ object frmPrincipal: TfrmPrincipal
       object nmuCadastroPadrao: TMenuItem
         Caption = 'Usu'#225'rios'
         OnClick = nmuUsuariosClick
+      end
+    end
+    object Financeiro1: TMenuItem
+      Caption = 'Financeiro'
+      object Caixa1: TMenuItem
+        Caption = 'Caixa'
+        OnClick = Caixa1Click
       end
     end
     object mnuRelatorios: TMenuItem

@@ -15,9 +15,12 @@ type
     nmuCadastroPadrao: TMenuItem;
     StatusBar1: TStatusBar;
     Timer1: TTimer;
+    Financeiro1: TMenuItem;
+    Caixa1: TMenuItem;
     procedure nmuUsuariosClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure Caixa1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,7 +36,13 @@ implementation
 
 uses MonolitoFinanceiro.View.CadastroPadrao, MonolitoFinanceiro.View.Splash,
   MonolitoFinanceiro.View.Usuarios, MonolitoFinanceiro.View.Login,
-  MonolitoFinanceiro.Model.Usuario, MonolitoFinanceiro.View.RedefinirSenha;
+  MonolitoFinanceiro.Model.Usuario, MonolitoFinanceiro.View.RedefinirSenha,
+  MonolitoFinanceiro.View.Caixa;
+
+procedure TfrmPrincipal.Caixa1Click(Sender: TObject);
+begin
+  frmCaixa.Show;
+end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
