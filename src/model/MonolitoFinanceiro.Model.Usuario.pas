@@ -20,6 +20,7 @@ type
     cdsUsuariossenha: TStringField;
     cdsUsuariosstatus: TStringField;
     cdsUsuariosdata_cadastro: TDateField;
+    cdsUsuariossenha_temporaria: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -81,6 +82,8 @@ begin
     FEntidadeUsuario.ID := SQLConsulta.FieldByName('ID').AsString;
     FEntidadeUsuario.NOME := SQLConsulta.FieldByName('NOME').AsString;
     FEntidadeUsuario.LOGIN := SQLConsulta.FieldByName('LOGIN').AsString;
+    FEntidadeUsuario.Senha := SQLConsulta.FieldByName('SENHA').AsString;
+    FEntidadeUsuario.SenhaTemporaria := SQLConsulta.FieldByName('SENHA_TEMPORARIA').AsString = 'S';
   finally
     SQLConsulta.Close;
     SQLConsulta.Free;
@@ -101,9 +104,9 @@ begin
   try
     SQLQuery.Connection := dmConexao.SQLConexao;
     SQLQuery.SQL.Clear;
-    SQLQuery.SQL.Add('UPDATE USUARIOS SET SENHA_TEMPORARIA = :SENHA_TEMPORARIA, SENHA = :ENHA WHERE ID = :ID');
-    SQLQuery.ParamByName('SENHA_TEMPORARIA').AsString := 's';
-    SQLQuery.ParamByName('SENHA').AsString := TEMP_PASSWORD;
+    SQLQuery.SQL.Add('UPDATE USUARIOS SET SENHA_TEMPORARIA = :SENHA_TEMPORARIA, SENHA = :SENHA WHERE ID = :ID');
+    SQLQuery.ParamByName('SENHA_TEMPORARIA').AsString := 'S';
+    SQLQuery.ParamByName('SENHA').AsString := TBCrypt.GenerateHash(TEMP_PASSWORD);
     SQLQuery.ParamByName('ID').AsString := IDUsuario;
     SQLQuery.ExecSQL;
   finally
@@ -113,7 +116,22 @@ begin
 end;
 
 procedure TdmUsuarios.RedefinirSenha(Usuario: TModelEntidadeUsuario);
+var
+  SQLQuery : TFDQuery;
 begin
+  SQLQuery := TFDQuery.Create(nil);
+  try
+    SQLQuery.Connection := dmConexao.SQLConexao;
+    SQLQuery.SQL.Clear;
+    SQLQuery.SQL.Add('UPDATE USUARIOS SET SENHA_TEMPORARIA = :SENHA_TEMPORARIA, SENHA = :SENHA WHERE ID = :ID');
+    SQLQuery.ParamByName('SENHA_TEMPORARIA').AsString := 'N';
+    SQLQuery.ParamByName('SENHA').AsString := TBCrypt.GenerateHash(Usuario.Senha);
+    SQLQuery.ParamByName('ID').AsString := Usuario.ID;
+    SQLQuery.ExecSQL;
+  finally
+    SQLQuery.Close;
+    SQLQuery.Free;
+  end;
 
 end;
 

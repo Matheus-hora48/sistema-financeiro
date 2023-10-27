@@ -13,11 +13,9 @@ type
     DataSource1: TDataSource;
     edtNome: TEdit;
     edtLogin: TEdit;
-    edtSenha: TEdit;
     ToggleStatus: TToggleSwitch;
     lblName: TLabel;
     lblLogin: TLabel;
-    lblSenha: TLabel;
     lblStatus: TLabel;
     PopupMenu1: TPopupMenu;
     mnuLimparSenha: TMenuItem;
@@ -87,7 +85,6 @@ procedure TfrmUsuarios.btnSalvarClick(Sender: TObject);
 var
    LStatus : String;
    Mensagem : String;
-   LHash : String;
 begin
   if Trim(edtNome.Text) = '' then
   begin
@@ -103,16 +100,9 @@ begin
     abort;
   end;
 
-   if Trim(edtSenha.Text) = '' then
-  begin
-    edtSenha.SetFocus;
-    Application.MessageBox('O Campo senha não pode ser vazio.', 'Atenção', MB_OK + MB_ICONWARNING);
-    abort;
-  end;
-
   if dmUsuarios.TemLoginCadastrado(Trim(edtLogin.Text), dmUsuarios.cdsUsuarios.FieldByName('ID').AsString) then
   begin
-    edtSenha.SetFocus;
+    edtLogin.SetFocus;
     Application.MessageBox(PWideChar(Format('O login %s já se encontra cadastrado', [edtLogin.Text])), 'Atenção', MB_OK + MB_ICONWARNING);
     abort;
   end;
@@ -128,16 +118,14 @@ begin
   if dmUsuarios.cdsUsuarios.State in [dsInsert] then
   begin
     Mensagem := 'Registro incluido com sucesso!';
+
     dmUsuarios.cdsUsuariosID.AsString := TUtilitarios.GetId;
     dmUsuarios.cdsUsuariosdata_cadastro.AsDateTime := now;
-
+    dmUsuarios.cdsUsuariosSenha.AsString := TBCrypt.GenerateHash(dmUsuarios.TEMP_PASSWORD);
+    dmUsuarios.cdsUsuariosSenha_Temporaria.AsString := 'S';
   end;
-
-  LHash := TBCrypt.GenerateHash(Trim(edtSenha.Text));
-
   dmUsuarios.cdsUsuariosNome.AsString := Trim(edtNome.Text);
   dmUsuarios.cdsUsuariosLogin.AsString := Trim(edtLogin.Text);
-  dmUsuarios.cdsUsuariosSenha.AsString := LHash;
   dmUsuarios.cdsUsuariosStatus.AsString := LStatus;
 
   dmUsuarios.cdsUsuarios.Post;
@@ -183,7 +171,6 @@ begin
 
   edtNome.Text := dmUsuarios.cdsUsuariosNome.AsString;
   edtLogin.Text := dmUsuarios.cdsUsuariosLogin.AsString;
-  edtSenha.Text := dmUsuarios.cdsUsuariosSenha.AsString;
   ToggleStatus.State := tsson;
 
   if dmUsuarios.cdsUsuariosStatus.AsString = 'B' then

@@ -33,7 +33,7 @@ implementation
 
 uses MonolitoFinanceiro.View.CadastroPadrao, MonolitoFinanceiro.View.Splash,
   MonolitoFinanceiro.View.Usuarios, MonolitoFinanceiro.View.Login,
-  MonolitoFinanceiro.Model.Usuario;
+  MonolitoFinanceiro.Model.Usuario, MonolitoFinanceiro.View.RedefinirSenha;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
@@ -52,6 +52,22 @@ begin
   finally
     FreeAndNil(frmLogin);
   end;
+
+  if dmUsuarios.GetUsuarioLogado.SenhaTemporaria then
+  begin
+    frmRedefinirSenha := TFrmRedefinirSenha.Create(nil);
+    try
+      frmRedefinirSenha.Usuario := dmUsuarios.GetUsuarioLogado;
+      frmRedefinirSenha.ShowModal;
+
+      if frmRedefinirSenha.ModalResult <> mrOK then
+        Application.Terminate;
+    finally
+      FreeAndNil(frmRedefinirSenha);
+    end;
+  end;
+
+
   StatusBar1.Panels.Items[1].Text := 'Usuário: ' + dmUsuarios.GetUsuarioLogado.Nome;
 end;
 

@@ -303,7 +303,7 @@ object frmLogin: TfrmLogin
           Height = 28
           Align = alTop
           Caption = 'Usuario'
-          ExplicitWidth = 67
+          ExplicitTop = -6
         end
         object edtLogin: TEdit
           Left = 0
@@ -354,7 +354,7 @@ object frmLogin: TfrmLogin
           Align = alTop
           PasswordChar = '*'
           TabOrder = 0
-          ExplicitTop = 34
+          ExplicitWidth = 604
         end
       end
     end

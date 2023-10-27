@@ -46,6 +46,11 @@ object dmUsuarios: TdmUsuarios
       FieldName = 'data_cadastro'
       Origin = 'data_cadastro'
     end
+    object cdsUsuariossenha_temporaria: TStringField
+      FieldName = 'senha_temporaria'
+      FixedChar = True
+      Size = 1
+    end
   end
   object dspUsuarios: TDataSetProvider
     DataSet = sqlUsuarios

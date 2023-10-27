@@ -13,7 +13,8 @@ uses
   MonolitoFinanceiro.Model.Entidade.Usuario in 'src\model\entidades\MonolitoFinanceiro.Model.Entidade.Usuario.pas',
   MonolitoFinanceiro.Model.Sistema in 'src\model\MonolitoFinanceiro.Model.Sistema.pas' {dmSistema: TDataModule},
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  MonolitoFinanceiro.View.RedefinirSenha in 'src\view\MonolitoFinanceiro.View.RedefinirSenha.pas' {frmRedefinirSenha};
 
 {$R *.res}
 

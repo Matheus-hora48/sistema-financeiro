@@ -1,13 +1,13 @@
 inherited frmUsuarios: TfrmUsuarios
   Caption = 'Cadastro Usu'#225'rios'
-  ClientHeight = 513
   ClientWidth = 758
+  ExplicitHeight = 542
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
     Width = 758
-    Height = 513
-    ActiveCard = CardPesquisa
     inherited CardCadastro: TCard
+      Height = 502
+      ExplicitHeight = 493
       object lblName: TLabel [0]
         Left = 16
         Top = 40
@@ -22,21 +22,16 @@ inherited frmUsuarios: TfrmUsuarios
         Height = 28
         Caption = 'Login'
       end
-      object lblSenha: TLabel [2]
-        Left = 16
-        Top = 124
-        Width = 53
-        Height = 28
-        Caption = 'Senha'
-      end
-      object lblStatus: TLabel [3]
+      object lblStatus: TLabel [2]
         Left = 17
-        Top = 158
+        Top = 121
         Width = 53
         Height = 28
         Caption = 'Status'
       end
       inherited Panel1: TPanel
+        Top = 421
+        ExplicitTop = 412
         inherited btnSalvar: TButton
           OnClick = btnSalvarClick
         end
@@ -55,25 +50,19 @@ inherited frmUsuarios: TfrmUsuarios
         Height = 36
         TabOrder = 2
       end
-      object edtSenha: TEdit
-        Left = 103
-        Top = 121
-        Width = 378
-        Height = 36
-        TabOrder = 3
-      end
       object ToggleStatus: TToggleSwitch
         Left = 103
-        Top = 163
+        Top = 121
         Width = 151
         Height = 30
         StateCaptions.CaptionOn = 'Ativo'
         StateCaptions.CaptionOff = 'Bloqueado'
-        TabOrder = 4
+        TabOrder = 3
         ThumbColor = clHotLight
       end
     end
     inherited CardPesquisa: TCard
+      Height = 502
       inherited pnlPesquisa: TPanel
         inherited btnPesquisar: TButton
           OnClick = btnPesquisarClick
