@@ -21,7 +21,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
     Width = 758
     Height = 513
     Align = alClient
-    ActiveCard = CardCadastro
+    ActiveCard = CardPesquisa
     Caption = 'PnlPrincipal'
     TabOrder = 0
     ExplicitWidth = 752
@@ -72,6 +72,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           ImageMargins.Top = 10
           Images = ImageList1
           TabOrder = 1
+          OnClick = btnSalvarClick
         end
       end
     end
@@ -122,6 +123,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           ImageMargins.Top = 10
           Images = ImageList1
           TabOrder = 1
+          OnClick = btnPesquisarClick
           ExplicitLeft = 634
         end
       end
@@ -180,6 +182,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Images = ImageList1
           TabOrder = 2
           OnClick = btnIncluirClick
+          ExplicitTop = 6
         end
         object btnAlterar: TButton
           Left = 116
@@ -211,6 +214,9 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           ImageMargins.Top = 10
           Images = ImageList1
           TabOrder = 4
+          OnClick = btnExcluirClick
+          ExplicitLeft = 238
+          ExplicitTop = 6
         end
       end
       object pnlGrid: TPanel
@@ -229,6 +235,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Width = 756
           Height = 333
           Align = alClient
+          DataSource = DataSource1
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -1837,5 +1844,9 @@ object frmCadastroPadrao: TfrmCadastroPadrao
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object DataSource1: TDataSource
+    Left = 689
+    Top = 298
   end
 end

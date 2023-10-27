@@ -1,0 +1,37 @@
+unit MonolitoFinanceiro.Utilitarios;
+
+interface
+
+uses
+  Vcl.DBGrids;
+type
+  TUtilitarios = class
+    class function GetID : String;
+    class function LikeFind(Pesquisa : String; Grid : TDBGrid) : string;
+  end;
+
+implementation
+
+{ TUtilitario }
+
+uses
+  System.SysUtils;
+
+class function TUtilitarios.GetID: String;
+begin
+  Result := TGUID.NewGuid.ToString;
+  Result := StringReplace(Result, '{', '', [rfReplaceAll]);
+  Result := StringReplace(Result, '}', '', [rfReplaceAll]);
+end;
+
+class function TUtilitarios.LikeFind(Pesquisa: String; Grid: TDBGrid): string;
+var
+  Lontador : Integer;
+begin
+  Result := '';
+
+  if Pesquisa.Trim.IsEmpty then
+    exit;
+end;
+
+end.

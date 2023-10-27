@@ -43,6 +43,7 @@ begin
   finally
     FreeAndNil(frmSplash);
   end;
+
   frmLogin := TFrmLogin.Create(nil);
   try
     frmLogin.ShowModal;

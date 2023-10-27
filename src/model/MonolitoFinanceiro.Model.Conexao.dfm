@@ -10,6 +10,7 @@ object dmConexao: TdmConexao
         'istemaFinanceiro.db'
       'LockingMode=Normal'
       'DriverID=SQLite')
+    Connected = True
     LoginPrompt = False
     Left = 72
     Top = 56

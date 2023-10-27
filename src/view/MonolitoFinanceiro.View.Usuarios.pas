@@ -10,7 +10,6 @@ uses
 
 type
   TfrmUsuarios = class(TfrmCadastroPadrao)
-    DataSource1: TDataSource;
     edtNome: TEdit;
     edtLogin: TEdit;
     ToggleStatus: TToggleSwitch;
@@ -19,18 +18,15 @@ type
     lblStatus: TLabel;
     PopupMenu1: TPopupMenu;
     mnuLimparSenha: TMenuItem;
-    procedure btnPesquisarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
-    procedure btnIncluirClick(Sender: TObject);
-    procedure btnCancelarClick(Sender: TObject);
-    procedure btnExcluirClick(Sender: TObject);
     procedure mnuLimparSenhaClick(Sender: TObject);
   private
     { Private declarations }
-    procedure LimparCampos;
   public
     { Public declarations }
+  protected
+    procedure Pesquisar; override;
   end;
 
 var
@@ -44,47 +40,9 @@ uses MonolitoFinanceiro.Model.Usuario,
 MonolitoFinanceiro.Utilitarios,
 BCrypt;
 
-procedure TfrmUsuarios.btnCancelarClick(Sender: TObject);
-begin
-  inherited;
-  dmUsuarios.cdsUsuarios.Cancel;
-end;
-
-procedure TfrmUsuarios.btnExcluirClick(Sender: TObject);
-begin
-  inherited;
-  if Application.MessageBox('Deseja realmente excluir o registro?', 'Pergunta', MB_YESNO + MB_ICONQUESTION) <> mrYes then
-    exit;
-
-  try
-    dmUsuarios.cdsUsuarios.Delete;
-    dmUsuarios.cdsUsuarios.ApplyUpdates(0);
-    Application.MessageBox('Registro excluído com sucesso!', 'Atenção', MB_OK + MB_ICONINFORMATION);
-    except on E: Exception do
-      Application.MessageBox(PWideChar(E.Message),'Erro ao excluir registro',MB_OK + MB_ICONERROR);
-  end;
-
-end;
-
-procedure TfrmUsuarios.btnIncluirClick(Sender: TObject);
-begin
-  inherited;
-  LimparCampos;
-  dmUsuarios.cdsUsuarios.Insert;
-end;
-
-procedure TfrmUsuarios.btnPesquisarClick(Sender: TObject);
-begin
-  inherited;
-  dmUsuarios.cdsUsuarios.Close;
-  dmUsuarios.cdsUsuarios.CommandText := 'select * from usuarios';
-  dmUsuarios.cdsUsuarios.Open;
-end;
-
 procedure TfrmUsuarios.btnSalvarClick(Sender: TObject);
 var
    LStatus : String;
-   Mensagem : String;
 begin
   if Trim(edtNome.Text) = '' then
   begin
@@ -113,45 +71,18 @@ begin
   if ToggleStatus.State = tssOff then
     LStatus := 'B';
 
-  Mensagem := 'Registro alterado com sucesso!';
-
   if dmUsuarios.cdsUsuarios.State in [dsInsert] then
   begin
-    Mensagem := 'Registro incluido com sucesso!';
-
     dmUsuarios.cdsUsuariosID.AsString := TUtilitarios.GetId;
     dmUsuarios.cdsUsuariosdata_cadastro.AsDateTime := now;
     dmUsuarios.cdsUsuariosSenha.AsString := TBCrypt.GenerateHash(dmUsuarios.TEMP_PASSWORD);
     dmUsuarios.cdsUsuariosSenha_Temporaria.AsString := 'S';
   end;
+
   dmUsuarios.cdsUsuariosNome.AsString := Trim(edtNome.Text);
   dmUsuarios.cdsUsuariosLogin.AsString := Trim(edtLogin.Text);
   dmUsuarios.cdsUsuariosStatus.AsString := LStatus;
-
-  dmUsuarios.cdsUsuarios.Post;
-  dmUsuarios.cdsUsuarios.ApplyUpdates(0);
-  Application.MessageBox(PWideChar(Mensagem), 'Atenção', MB_OK + MB_ICONINFORMATION);
-
-  pnlPrincipal.ActiveCard := CardPesquisa;
-
   inherited;
-
-end;
-
-
-
-procedure TfrmUsuarios.LimparCampos;
-var
-  Contador : Integer;
-begin
-  for Contador := 0 to Pred(ComponentCount) do
-  begin
-    if Components[Contador] is TCustomEdit then
-      TCustomEdit(Components[Contador]).Clear
-    else if Components[Contador]is TToggleSwitch then
-      TToggleSwitch(Components[Contador]).State := tsson;
-  end;
-
 end;
 
 procedure TfrmUsuarios.mnuLimparSenhaClick(Sender: TObject);
@@ -164,10 +95,21 @@ begin
   end;
 end;
 
+procedure TfrmUsuarios.Pesquisar;
+var
+  FiltroPesquisa : String;
+
+begin
+  FiltroPesquisa := TUtilitarios.LikeFind(edtPesquisar.Text,DBGrid1);
+  dmUsuarios.cdsUsuarios.Close;
+  dmUsuarios.cdsUsuarios.CommandText := 'select * from usuarios' + FiltroPesquisa;
+  dmUsuarios.cdsUsuarios.Open;
+  inherited;
+end;
+
 procedure TfrmUsuarios.btnAlterarClick(Sender: TObject);
 begin
   inherited;
-  dmUsuarios.cdsUsuarios.Edit;
 
   edtNome.Text := dmUsuarios.cdsUsuariosNome.AsString;
   edtLogin.Text := dmUsuarios.cdsUsuariosLogin.AsString;

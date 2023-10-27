@@ -5,6 +5,7 @@ object dmUsuarios: TdmUsuarios
   Width = 655
   PixelsPerInch = 120
   object sqlUsuarios: TFDQuery
+    Active = True
     Connection = dmConexao.SQLConexao
     SQL.Strings = (
       'select * from usuarios')
@@ -12,6 +13,7 @@ object dmUsuarios: TdmUsuarios
     Top = 32
   end
   object cdsUsuarios: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspUsuarios'
@@ -48,6 +50,7 @@ object dmUsuarios: TdmUsuarios
     end
     object cdsUsuariossenha_temporaria: TStringField
       FieldName = 'senha_temporaria'
+      Origin = 'senha_temporaria'
       FixedChar = True
       Size = 1
     end

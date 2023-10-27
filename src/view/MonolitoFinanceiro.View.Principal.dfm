@@ -31,8 +31,8 @@ object frmPrincipal: TfrmPrincipal
     ExplicitWidth = 616
   end
   object MainMenu1: TMainMenu
-    Left = 504
-    Top = 368
+    Left = 536
+    Top = 288
     object mnuCadastros: TMenuItem
       Caption = 'Cadastros'
       Hint = 'Cadastro do sistema'
