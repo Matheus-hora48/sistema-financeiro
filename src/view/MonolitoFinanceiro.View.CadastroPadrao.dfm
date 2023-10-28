@@ -182,7 +182,6 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Images = ImageList1
           TabOrder = 2
           OnClick = btnIncluirClick
-          ExplicitTop = 6
         end
         object btnAlterar: TButton
           Left = 116
@@ -215,8 +214,6 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Images = ImageList1
           TabOrder = 4
           OnClick = btnExcluirClick
-          ExplicitLeft = 238
-          ExplicitTop = 6
         end
       end
       object pnlGrid: TPanel

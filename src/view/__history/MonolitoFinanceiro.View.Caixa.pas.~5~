@@ -1,0 +1,72 @@
+unit MonolitoFinanceiro.View.Caixa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, MonolitoFinanceiro.View.CadastroPadrao,
+  Data.DB, System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.WinXPanels;
+
+type
+  TfrmCaixa = class(TfrmCadastroPadrao)
+    edtNDocumento: TEdit;
+    lblNDocumento: TLabel;
+    lblDescricao: TLabel;
+    edtDescricao: TEdit;
+    lblValor: TLabel;
+    edtValor: TEdit;
+    RadioGroup1: TRadioGroup;
+    procedure btnSalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  protected
+    procedure Pesquisar; override;
+  end;
+
+var
+  frmCaixa: TfrmCaixa;
+
+implementation
+
+{$R *.dfm}
+
+uses MonolitoFinanceiro.Model.Caixa, MonolitoFinanceiro.Utilitarios;
+
+{ TfrmCadastroPadrao1 }
+
+procedure TfrmCaixa.btnSalvarClick(Sender: TObject);
+begin
+  if Trim(edtNDocumento.Text) = '' then
+  begin
+    edtNDocumento.SetFocus;
+    Application.MessageBox('O Campo Numero do Documento não pode ser vazio', 'Atenção', MB_OK + MB_ICONWARNING);
+    abort;
+  end;
+
+  if Trim(edtValor.Text) = '' then
+  begin
+    edtDescricao.SetFocus;
+    Application.MessageBox('O Campo Valor não pode ser vazio', 'Atenção', MB_OK + MB_ICONWARNING);
+    abort;
+  end;
+  inherited;
+
+end;
+
+procedure TfrmCaixa.Pesquisar;
+var
+  FiltroPesquisa : String;
+
+begin
+  FiltroPesquisa := TUtilitarios.LikeFind(edtPesquisar.Text,DBGrid1);
+  dmCaixa.cdsCaixa.Close;
+  dmCaixa.cdsCaixa.CommandText := 'select * from caixa' + FiltroPesquisa;
+  dmCaixa.cdsCaixa.Open;
+  inherited;
+
+end;
+
+end.
