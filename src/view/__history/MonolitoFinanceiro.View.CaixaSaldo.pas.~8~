@@ -1,0 +1,151 @@
+unit MonolitoFinanceiro.View.CaixaSaldo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, System.ImageList,
+  Vcl.ImgList, Vcl.StdCtrls, Vcl.WinXPanels, Vcl.ComCtrls,
+  MonolitoFinanceiro.Model.Entidade.Caixa.Resumo;
+
+type
+  TfrmCaixaSaldo = class(TForm)
+    pnlPrincipal: TPanel;
+    pnlPesquisar: TPanel;
+    pnlContent: TPanel;
+    ImageList1: TImageList;
+    btnPesquisar: TButton;
+    dateInicial: TDateTimePicker;
+    dateFinal: TDateTimePicker;
+    lblDataInicial: TLabel;
+    lblDataFinal: TLabel;
+    StackPanel1: TStackPanel;
+    pnlSaldoFinal: TPanel;
+    lblSaldoFinal: TLabel;
+    lblValorFinal: TLabel;
+    pnlSaldoParcial: TPanel;
+    lblSaldoParcial: TLabel;
+    lblValorParcial: TLabel;
+    pnlTotalSaida: TPanel;
+    lblTotalSaidas: TLabel;
+    lblValorSaida: TLabel;
+    pnlTotalEntrada: TPanel;
+    lblTotalEntradas: TLabel;
+    lblValorEntrada: TLabel;
+    pnlSaldoInicial: TPanel;
+    Label8: TLabel;
+    lblValorInicial: TLabel;
+    pnlLineHeader: TPanel;
+    pnlLineFooter: TPanel;
+  private
+    { Private declarations }
+    function GetSaldoAnterio(Date : TDate) : Currency;
+    function GetTotalEntradasCaixa (DataInicial, DataDinal: TDate) : Currency;
+    function GetTotalSaidasCaixa (DataInicial, DataDinal: TDate) : Currency;
+  public
+    { Public declarations }
+    function ResumoCaixa(DataInicial, DataDinal: TDate) : TModelResumoCaixa;
+  end;
+
+var
+  frmCaixaSaldo: TfrmCaixaSaldo;
+
+implementation
+
+{$R *.dfm}
+
+uses MonolitoFinanceiro.Model.Caixa, MonolitoFinanceiro.Model.Conexao,
+  FireDAC.Comp.Client, MonolitoFinanceiro.View.CadastroPadrao;
+
+{ TfrmCaixaSaldo }
+
+function TfrmCaixaSaldo.GetSaldoAnterio(Date: TDate): Currency;
+var
+  SQLConsulta : TFDQuery;
+  TotalEntradas : Currency;
+  TotalSaidas : Currency;
+begin
+  SQLConsulta := TFDQuery.Create(nil);
+  try
+    Result := 0;
+    SQLConsulta.Connection := dmConcexao.sqlConcexao;
+    SQLConsulta.SQL.Clear;
+    SQLConsulta.SQL.Add('SELECT IFNULL(SUM(VALOR), 0) AS VALOR FROM CAIXA WHERE TIPO = ''R''');
+    SQLConsulta.SQL.Add(' AND DATA_CADASTRO < :DATA');
+    SQLCOnsulta.ParamByName('DATA').AsDate := Date;
+    SQLConsulta.Open;
+    TotalEntradas := SQLConsulta.FieldByName('VALOR').AsCurrency;
+
+    SQLConsulta.SQL.Clear;
+    SQLConsulta.SQL.Add('SELECT IFNULL(SUM(VALOR), 0) AS VALOR FROM CAIXA WHERE TIPO = ''D''');
+    SQLConsulta.SQL.Add(' AND DATA_CADASTRO < :DATA');
+    SQLCOnsulta.ParamByName('DATA').AsDate := Date;
+    SQLConsulta.Open;
+    TotalSaidas := SQLConsulta.FieldByName('VALOR').AsCurrency;
+  finally
+    SQLConsulta.Free;
+  end;
+  Result := TotalEntradas - TotalSaidas;
+end;
+
+function TfrmCaixaSaldo.GetTotalEntradasCaixa(DataInicial,
+  DataDinal: TDate): Currency;
+var
+  SQLConsulta : TFDQuery;
+begin
+  Result := 0;
+  SQLConsulta := TFDQuery.Create(nil);
+  try
+    SQLConsulta.Connection := dmConcexao.sqlConcexao;
+    SQLConsulta.SQL.Clear;
+    SQLConsulta.SQL.Add('SELECT IFNULL(SUM(VALOR), 0) AS VALOR FROM CAIXA WHERE TIPO = ''R''');
+    SQLConsulta.SQL.Add(' AND DATA_CADASTRO BETWEEN :DATAINICIAL AND :DATAFINAL');
+    SQLCOnsulta.ParamByName('DATAINICIAL').AsDate := DataInicial;
+    SQLCOnsulta.ParamByName('DATAFINAL').AsDate := DataDinal;
+    SQLConsulta.Open;
+    Result := sqlConsulta.FieldByName('VALOR').AsCurrency;
+  finally
+    SQLConsulta.Free;
+  end;
+end;
+
+function TfrmCaixaSaldo.GetTotalSaidasCaixa(DataInicial,
+  DataDinal: TDate): Currency;
+var
+  SQLConsulta : TFDQuery;
+begin
+  Result := 0;
+  SQLConsulta := TFDQuery.Create(nil);
+  try
+    SQLConsulta.Connection := dmConcexao.sqlConcexao;
+    SQLConsulta.SQL.Clear;
+    SQLConsulta.SQL.Add('SELECT IFNULL(SUM(VALOR), 0) AS VALOR FROM CAIXA WHERE TIPO = ''D''');
+    SQLConsulta.SQL.Add(' AND DATA_CADASTRO BETWEEN :DATAINICIAL AND :DATAFINAL');
+    SQLCOnsulta.ParamByName('DATAINICIAL').AsDate := DataInicial;
+    SQLCOnsulta.ParamByName('DATAFINAL').AsDate := DataDinal;
+    SQLConsulta.Open;
+    Result := sqlConsulta.FieldByName('VALOR').AsCurrency;
+  finally
+    SQLConsulta.Free;
+  end;
+
+end;
+
+function TfrmCaixaSaldo.ResumoCaixa(DataInicial,
+  DataDinal: TDate): TModelResumoCaixa;
+begin
+
+  if DataInicial > DataDinal then
+    raise Exception.Create('Período inváliso');
+  Result := TModelResumoCaixa.Create;
+  try
+    Result.SaldoInicial := GetSaldoAnterio(DataInicial);
+    Result.TotalSaidas := GetTotalEntradasCaixa(DataInicial, DataDinal);
+    Result.TotalEntradas  := GetTotalSaidasCaixa(DataInicial, DataDinal);
+  except
+    Result.Free;
+    raise;
+  end;
+end;
+
+end.

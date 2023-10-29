@@ -9,7 +9,6 @@ object dmCaixa: TdmCaixa
     Top = 32
   end
   object cdsCaixa: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCaixa'

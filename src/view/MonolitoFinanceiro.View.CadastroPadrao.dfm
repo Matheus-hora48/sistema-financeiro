@@ -233,6 +233,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Height = 333
           Align = alClient
           DataSource = DataSource1
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText

@@ -1,15 +1,15 @@
 inherited frmCaixa: TfrmCaixa
   Caption = 'Caixa'
+  ClientHeight = 513
   ClientWidth = 863
-  ExplicitLeft = 3
-  ExplicitTop = 3
   ExplicitWidth = 875
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
     Width = 863
+    Height = 513
+    ExplicitWidth = 857
     inherited CardCadastro: TCard
       Width = 861
-      ExplicitLeft = 17
       ExplicitWidth = 861
       object lblNDocumento: TLabel [0]
         Left = 24
@@ -34,11 +34,14 @@ inherited frmCaixa: TfrmCaixa
       end
       inherited Panel1: TPanel
         Width = 861
+        ExplicitWidth = 861
         inherited btnCancelar: TButton
           Left = 745
+          ExplicitLeft = 745
         end
         inherited btnSalvar: TButton
           Left = 629
+          ExplicitLeft = 629
         end
       end
       object edtNDocumento: TEdit
@@ -79,20 +82,47 @@ inherited frmCaixa: TfrmCaixa
     end
     inherited CardPesquisa: TCard
       Width = 861
+      ExplicitWidth = 855
       inherited pnlPesquisa: TPanel
         Width = 861
+        ExplicitWidth = 855
+        object Label2: TLabel [1]
+          Left = 464
+          Top = 5
+          Width = 39
+          Height = 28
+          Caption = 'Tipo'
+        end
         inherited btnPesquisar: TButton
           Left = 745
+          ExplicitLeft = 739
+        end
+        object cbTipo: TComboBox
+          Left = 464
+          Top = 39
+          Width = 145
+          Height = 36
+          Style = csDropDownList
+          ItemIndex = 0
+          TabOrder = 2
+          Text = 'TODOS'
+          Items.Strings = (
+            'TODOS'
+            'RECEITA'
+            'DESPESA')
         end
       end
       inherited pnlPesquisaButoes: TPanel
         Width = 861
+        ExplicitWidth = 855
         inherited btnFechar: TButton
           Left = 745
+          ExplicitLeft = 739
         end
       end
       inherited pnlGrid: TPanel
         Width = 861
+        ExplicitWidth = 855
         inherited DBGrid1: TDBGrid
           Width = 861
           Columns = <

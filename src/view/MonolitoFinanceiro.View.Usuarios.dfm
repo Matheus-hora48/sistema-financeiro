@@ -24,11 +24,6 @@ inherited frmUsuarios: TfrmUsuarios
         Height = 28
         Caption = 'Status'
       end
-      inherited Panel1: TPanel
-        inherited btnSalvar: TButton
-          OnClick = btnSalvarClick
-        end
-      end
       object edtNome: TEdit
         Left = 103
         Top = 37

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, MonolitoFinanceiro.View.CadastroPadrao,
   Data.DB, System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.WinXPanels;
+  Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.DBCtrls;
 
 type
   TfrmCaixa = class(TfrmCadastroPadrao)
@@ -17,6 +17,8 @@ type
     lblValor: TLabel;
     edtValor: TEdit;
     RadioGroup1: TRadioGroup;
+    Label2: TLabel;
+    cbTipo: TComboBox;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
   private
@@ -99,11 +101,17 @@ end;
 procedure TfrmCaixa.Pesquisar;
 var
   FiltroPesquisa : String;
+  FiltroTipo : String;
 
 begin
+  case cbTipo.ItemIndex of
+    1 : FiltroTipo := ' AND TIPO = ''R''';
+    2 : FiltroTipo := ' AND TIPO = ''D''';
+  end;
+
   FiltroPesquisa := TUtilitarios.LikeFind(edtPesquisar.Text,DBGrid1);
   dmCaixa.cdsCaixa.Close;
-  dmCaixa.cdsCaixa.CommandText := 'select * from caixa' + FiltroPesquisa;
+  dmCaixa.cdsCaixa.CommandText := 'select * from caixa where 1 = 1' + FiltroPesquisa + FiltroTipo;
   dmCaixa.cdsCaixa.Open;
   inherited;
 
