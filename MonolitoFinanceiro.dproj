@@ -153,6 +153,11 @@
             <Form>frmCaixa</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\view\MonolitoFinanceiro.View.CaixaSaldo.pas">
+            <Form>frmCaixaSaldo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\model\entidades\MonolitoFinanceiro.Model.Entidade.Caixa.Resumo.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
