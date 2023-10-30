@@ -24,6 +24,7 @@ type
     edtSenha: TEdit;
     btnEntrar: TButton;
     procedure btnEntrarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,7 +38,11 @@ implementation
 
 {$R *.dfm}
 
+uses MonolitoFinanceiro.Model.Usuario, MonolitoFinanceiro.Model.Sistema;
+
 procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+var
+  MyClass: TComponent;
 begin
   if Trim(edtLogin.Text) = '' then
   begin
@@ -45,7 +50,31 @@ begin
     Application.MessageBox('Informe o seu usuário.', 'Atenção', MB_OK + MB_ICONWARNING);
     Abort;
   end;
+  if Trim(edtSenha.Text) = '' then
+  begin
+    edtSenha.SetFocus;
+    Application.MessageBox('Informe o sua senha.', 'Atenção', MB_OK + MB_ICONWARNING);
+    Abort;
+  end;
 
+  try
+    dmUsuarios.EfetuarLogin(Trim(edtLogin.Text), Trim(edtSenha.Text));
+    dmSistema.DataUltimoAcesso(Now);
+    dmSistema.UsuarioUltimoAcesso(dmUsuarios.GetUsuarioLogado.Login);
+    ModalResult := mrOK;
+  except
+    on Erro: Exception do
+    begin
+      Application.MessageBox(PWideChar(Erro.Message), 'Atenção', MB_OK + MB_ICONWARNING);
+      edtLogin.SetFocus;
+    end;
+  end;
+
+end;
+
+procedure TfrmLogin.FormShow(Sender: TObject);
+begin
+  edtLogin.Text := dmSistema.UsuarioUltimoAcesso;
 end;
 
 end.

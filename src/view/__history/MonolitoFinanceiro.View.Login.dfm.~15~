@@ -4,7 +4,7 @@ object frmLogin: TfrmLogin
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Login'
-  ClientHeight = 442
+  ClientHeight = 440
   ClientWidth = 957
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,12 +13,13 @@ object frmLogin: TfrmLogin
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poScreenCenter
+  OnShow = FormShow
   TextHeight = 28
   object pnlEsquerda: TPanel
     Left = 0
     Top = 0
     Width = 225
-    Height = 442
+    Height = 440
     Align = alLeft
     BevelOuter = bvNone
     Color = clHighlight
@@ -223,9 +224,10 @@ object frmLogin: TfrmLogin
     Left = 225
     Top = 0
     Width = 732
-    Height = 442
+    Height = 440
     Align = alClient
     TabOrder = 1
+    OnClick = btnEntrarClick
     ExplicitWidth = 726
     ExplicitHeight = 433
     object Panel1: TPanel
@@ -276,7 +278,7 @@ object frmLogin: TfrmLogin
       Left = 1
       Top = 153
       Width = 730
-      Height = 288
+      Height = 286
       Align = alClient
       BevelOuter = bvNone
       Padding.Left = 60
@@ -314,17 +316,6 @@ object frmLogin: TfrmLogin
           ExplicitWidth = 604
         end
       end
-      object btnEntrar: TButton
-        Left = 60
-        Top = 201
-        Width = 610
-        Height = 48
-        Align = alTop
-        Caption = 'Entrar'
-        TabOrder = 1
-        OnClick = btnEntrarClick
-        ExplicitWidth = 604
-      end
       object Panel4: TPanel
         Left = 60
         Top = 88
@@ -334,7 +325,7 @@ object frmLogin: TfrmLogin
         Align = alTop
         Alignment = taLeftJustify
         BevelOuter = bvNone
-        TabOrder = 2
+        TabOrder = 1
         ExplicitWidth = 604
         object lblSenha: TLabel
           Left = 0
@@ -351,9 +342,33 @@ object frmLogin: TfrmLogin
           Width = 610
           Height = 36
           Align = alTop
+          PasswordChar = '*'
           TabOrder = 0
           ExplicitWidth = 604
         end
+      end
+      object Panel5: TPanel
+        Left = 60
+        Top = 201
+        Width = 610
+        Height = 41
+        Align = alTop
+        BevelOuter = bvNone
+        Caption = 'Entrar'
+        Color = clHighlight
+        DragCursor = crHandPoint
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 2
+        OnClick = btnEntrarClick
+        OnMouseEnter = Panel5MouseEnter
+        OnMouseLeave = Panel5MouseLeave
+        ExplicitTop = 249
       end
     end
   end

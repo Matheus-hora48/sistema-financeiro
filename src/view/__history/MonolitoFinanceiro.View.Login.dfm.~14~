@@ -352,7 +352,6 @@ object frmLogin: TfrmLogin
         Top = 201
         Width = 610
         Height = 41
-        Cursor = crHandPoint
         Align = alTop
         BevelOuter = bvNone
         Caption = 'Entrar'
@@ -368,7 +367,6 @@ object frmLogin: TfrmLogin
         TabOrder = 2
         OnClick = btnEntrarClick
         OnMouseEnter = Panel5MouseEnter
-        OnMouseLeave = Panel5MouseLeave
         ExplicitTop = 249
       end
     end

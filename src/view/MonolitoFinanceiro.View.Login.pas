@@ -22,9 +22,11 @@ type
     Panel4: TPanel;
     lblSenha: TLabel;
     edtSenha: TEdit;
-    btnEntrar: TButton;
+    Panel5: TPanel;
     procedure btnEntrarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Panel5MouseEnter(Sender: TObject);
+    procedure Panel5MouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -75,6 +77,16 @@ end;
 procedure TfrmLogin.FormShow(Sender: TObject);
 begin
   edtLogin.Text := dmSistema.UsuarioUltimoAcesso;
+end;
+
+procedure TfrmLogin.Panel5MouseEnter(Sender: TObject);
+begin
+  Panel5.Color := clHotLight;
+end;
+
+procedure TfrmLogin.Panel5MouseLeave(Sender: TObject);
+begin
+  Panel5.Color := clHighlight;
 end;
 
 end.

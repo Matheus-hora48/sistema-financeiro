@@ -22,8 +22,10 @@ type
     Panel4: TPanel;
     lblSenha: TLabel;
     edtSenha: TEdit;
-    btnEntrar: TButton;
+    Panel5: TPanel;
     procedure btnEntrarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Panel5MouseEnter(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses MonolitoFinanceiro.Model.Usuario;
+uses MonolitoFinanceiro.Model.Usuario, MonolitoFinanceiro.Model.Sistema;
 
 procedure TfrmLogin.btnEntrarClick(Sender: TObject);
 var
@@ -58,13 +60,27 @@ begin
 
   try
     dmUsuarios.EfetuarLogin(Trim(edtLogin.Text), Trim(edtSenha.Text));
+    dmSistema.DataUltimoAcesso(Now);
+    dmSistema.UsuarioUltimoAcesso(dmUsuarios.GetUsuarioLogado.Login);
+    ModalResult := mrOK;
   except
     on Erro: Exception do
     begin
       Application.MessageBox(PWideChar(Erro.Message), 'Atenção', MB_OK + MB_ICONWARNING);
+      edtLogin.SetFocus;
     end;
   end;
 
+end;
+
+procedure TfrmLogin.FormShow(Sender: TObject);
+begin
+  edtLogin.Text := dmSistema.UsuarioUltimoAcesso;
+end;
+
+procedure TfrmLogin.Panel5MouseEnter(Sender: TObject);
+begin
+  Panel5.Color :=
 end;
 
 end.
