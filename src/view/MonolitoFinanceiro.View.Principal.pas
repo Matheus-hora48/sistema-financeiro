@@ -43,41 +43,13 @@ uses MonolitoFinanceiro.View.CadastroPadrao, MonolitoFinanceiro.View.Splash,
 
 procedure TfrmPrincipal.Caixa1Click(Sender: TObject);
 begin
+  Application.CreateForm(TfrmCaixa, frmCaixa);
   frmCaixa.Show;
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
-  frmSplash := TfrmSplash.Create(nil);
-  try
-    frmSplash.ShowModal;
-  finally
-    FreeAndNil(frmSplash);
-  end;
-
-  frmLogin := TFrmLogin.Create(nil);
-  try
-    frmLogin.ShowModal;
-    if frmLogin.ModalResult <> mrOK then
-      Application.Terminate;
-
-  finally
-    FreeAndNil(frmLogin);
-  end;
-
-  if dmUsuarios.GetUsuarioLogado.SenhaTemporaria then
-  begin
-    frmRedefinirSenha := TFrmRedefinirSenha.Create(nil);
-    try
-      frmRedefinirSenha.Usuario := dmUsuarios.GetUsuarioLogado;
-      frmRedefinirSenha.ShowModal;
-
-      if frmRedefinirSenha.ModalResult <> mrOK then
-        Application.Terminate;
-    finally
-      FreeAndNil(frmRedefinirSenha);
-    end;
-  end;
+  
 
 
   StatusBar1.Panels.Items[1].Text := 'Usuário: ' + dmUsuarios.GetUsuarioLogado.Nome;
@@ -85,11 +57,13 @@ end;
 
 procedure TfrmPrincipal.nmuUsuariosClick(Sender: TObject);
 begin
+  frmUsuarios := TfrmUsuarios.Create(Application);
   frmUsuarios.Show;
 end;
 
 procedure TfrmPrincipal.ResumoCaixa1Click(Sender: TObject);
 begin
+  Application.CreateForm(TfrmCaixaSaldo, frmCaixaSaldo);
   frmCaixaSaldo.Show;
 end;
 

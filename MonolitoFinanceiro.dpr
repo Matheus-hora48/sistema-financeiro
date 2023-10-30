@@ -2,6 +2,9 @@ program MonolitoFinanceiro;
 
 uses
   Vcl.Forms,
+  Vcl.Controls,
+  System.SysUtils,
+  Winapi.Windows,
   MonolitoFinanceiro.View.Principal in 'src\view\MonolitoFinanceiro.View.Principal.pas' {frmPrincipal},
   MonolitoFinanceiro.View.CadastroPadrao in 'src\view\MonolitoFinanceiro.View.CadastroPadrao.pas' {frmCadastroPadrao},
   MonolitoFinanceiro.View.Splash in 'src\view\MonolitoFinanceiro.View.Splash.pas' {frmSplash},
@@ -18,21 +21,76 @@ uses
   MonolitoFinanceiro.Model.Caixa in 'src\model\MonolitoFinanceiro.Model.Caixa.pas' {dmCaixa: TDataModule},
   MonolitoFinanceiro.View.Caixa in 'src\view\MonolitoFinanceiro.View.Caixa.pas' {frmCaixa},
   MonolitoFinanceiro.View.CaixaSaldo in 'src\view\MonolitoFinanceiro.View.CaixaSaldo.pas' {frmCaixaSaldo},
-  MonolitoFinanceiro.Model.Entidade.Caixa.Resumo in 'src\model\entidades\MonolitoFinanceiro.Model.Entidade.Caixa.Resumo.pas';
+  MonolitoFinanceiro.Model.Entidade.Caixa.Resumo in 'src\model\entidades\MonolitoFinanceiro.Model.Entidade.Caixa.Resumo.pas',
+  Unit1 in 'src\util\Unit1.pas',
+  MonolitoFinanceiro.Model.ContasPagar in 'src\model\MonolitoFinanceiro.Model.ContasPagar.pas' {dmContasPagar: TDataModule};
 
 {$R *.res}
 
+  procedure Splash;
+  var
+    LSplash: TfrmSplash;
+  begin
+    LSplash := TfrmSplash.Create(nil);
+    try
+      LSplash.ShowModal;
+    finally
+      //FreeAndNil(frmSplash);
+      LSplash.Free;
+    end;
+  end;
+
+  procedure TrocarSenhaTemporaria;
+  begin
+    if dmUsuarios.GetUsuarioLogado.SenhaTemporaria then
+    begin
+      frmRedefinirSenha := TFrmRedefinirSenha.Create(nil);
+      try
+        frmRedefinirSenha.Usuario := dmUsuarios.GetUsuarioLogado;
+        frmRedefinirSenha.ShowModal;
+
+        if frmRedefinirSenha.ModalResult <> mrOK then
+          Application.Terminate;
+      finally
+        FreeAndNil(frmRedefinirSenha);
+      end;
+    end;
+  end;
+
+  function Logar: Boolean;
+  begin
+    Result := False;
+
+    frmLogin := TFrmLogin.Create(nil);
+    try
+      frmLogin.ShowModal;
+
+      Result := not dmUsuarios.GetUsuarioLogado.ID.IsEmpty;
+    finally
+      //FreeAndNil(frmLogin);
+      frmLogin.Free;
+    end;
+
+    TrocarSenhaTemporaria;
+  end;
+
+
+
 begin
+  ReportMemoryLeaksOnShutdown := True;
+
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+
+  Splash;
   Application.CreateForm(TdmConexao, dmConexao);
   Application.CreateForm(TdmUsuarios, dmUsuarios);
-  Application.CreateForm(TdmCaixa, dmCaixa);
-  Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmCadastroPadrao, frmCadastroPadrao);
-  Application.CreateForm(TfrmUsuarios, frmUsuarios);
-  Application.CreateForm(TdmSistema, dmSistema);
-  Application.CreateForm(TfrmCaixa, frmCaixa);
-  Application.CreateForm(TfrmCaixaSaldo, frmCaixaSaldo);
+  Application.CreateForm(TdmContasPagar, dmContasPagar);
+  if Logar then
+  begin
+    Application.CreateForm(TfrmPrincipal, frmPrincipal);
+    Application.CreateForm(TdmSistema, dmSistema);
+  end;
   Application.Run;
+
 end.

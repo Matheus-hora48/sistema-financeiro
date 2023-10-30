@@ -21,6 +21,7 @@ type
     cbTipo: TComboBox;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -96,6 +97,12 @@ begin
   dmCaixa.cdsCaixatipo.AsString := LTipo;
   inherited;
 
+end;
+
+procedure TfrmCaixa.FormCreate(Sender: TObject);
+begin
+  inherited;
+  Application.CreateForm(TdmCaixa, dmCaixa);
 end;
 
 procedure TfrmCaixa.Pesquisar;

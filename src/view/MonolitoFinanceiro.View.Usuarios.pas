@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, MonolitoFinanceiro.View.CadastroPadrao,
   Data.DB, System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls, Vcl.Menus;
+  Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls, Vcl.Menus,
+  MonolitoFinanceiro.Model.Usuario;
 
 type
   TfrmUsuarios = class(TfrmCadastroPadrao)
@@ -21,8 +22,10 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure mnuLimparSenhaClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    DM: TdmUsuarios;
   public
     { Public declarations }
   protected
@@ -36,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses MonolitoFinanceiro.Model.Usuario,
+uses
 MonolitoFinanceiro.Utilitarios,
 BCrypt;
 
@@ -71,18 +74,26 @@ begin
   if ToggleStatus.State = tssOff then
     LStatus := 'B';
 
-  if dmUsuarios.cdsUsuarios.State in [dsInsert] then
+  if DM.cdsUsuarios.State in [dsInsert] then
   begin
-    dmUsuarios.cdsUsuariosID.AsString := TUtilitarios.GetId;
-    dmUsuarios.cdsUsuariosdata_cadastro.AsDateTime := now;
-    dmUsuarios.cdsUsuariosSenha.AsString := TBCrypt.GenerateHash(dmUsuarios.TEMP_PASSWORD);
-    dmUsuarios.cdsUsuariosSenha_Temporaria.AsString := 'S';
+    DM.cdsUsuariosID.AsString := TUtilitarios.GetId;
+    DM.cdsUsuariosdata_cadastro.AsDateTime := now;
+    DM.cdsUsuariosSenha.AsString := TBCrypt.GenerateHash(DM.TEMP_PASSWORD);
+    DM.cdsUsuariosSenha_Temporaria.AsString := 'S';
   end;
 
-  dmUsuarios.cdsUsuariosNome.AsString := Trim(edtNome.Text);
-  dmUsuarios.cdsUsuariosLogin.AsString := Trim(edtLogin.Text);
-  dmUsuarios.cdsUsuariosStatus.AsString := LStatus;
+  DM.cdsUsuariosNome.AsString := Trim(edtNome.Text);
+  DM.cdsUsuariosLogin.AsString := Trim(edtLogin.Text);
+  DM.cdsUsuariosStatus.AsString := LStatus;
   inherited;
+end;
+
+procedure TfrmUsuarios.FormCreate(Sender: TObject);
+begin
+  inherited;
+  DM := TdmUsuarios.Create( Self );
+  SQL := DM.sqlUsuarios.SQL.Text;
+  DataSource1.DataSet := DM.cdsUsuarios;
 end;
 
 procedure TfrmUsuarios.mnuLimparSenhaClick(Sender: TObject);
@@ -90,32 +101,26 @@ begin
   inherited;
   if not DataSource1.DataSet.IsEmpty then
   begin
-    dmUsuarios.LimparSenha(DataSource1.DataSet.FieldByName('ID').AsString);
+    DM.LimparSenha(DataSource1.DataSet.FieldByName('ID').AsString);
     Application.MessageBox(PWideChar(format('Foi definida a senha padrão para o usuário "%s"',[DataSource1.DataSet.FieldByName('NOME').AsString ])), 'Atenção', MB_OK + MB_ICONINFORMATION);
   end;
 end;
 
 procedure TfrmUsuarios.Pesquisar;
-var
-  FiltroPesquisa : String;
-
 begin
-  FiltroPesquisa := TUtilitarios.LikeFind(edtPesquisar.Text,DBGrid1);
-  dmUsuarios.cdsUsuarios.Close;
-  dmUsuarios.cdsUsuarios.CommandText := 'select * from usuarios where 1 = 1' + FiltroPesquisa;
-  dmUsuarios.cdsUsuarios.Open;
   inherited;
+  //
 end;
 
 procedure TfrmUsuarios.btnAlterarClick(Sender: TObject);
 begin
   inherited;
 
-  edtNome.Text := dmUsuarios.cdsUsuariosNome.AsString;
-  edtLogin.Text := dmUsuarios.cdsUsuariosLogin.AsString;
+  edtNome.Text := DM.cdsUsuariosNome.AsString;
+  edtLogin.Text := DM.cdsUsuariosLogin.AsString;
   ToggleStatus.State := tsson;
 
-  if dmUsuarios.cdsUsuariosStatus.AsString = 'B' then
+  if DM.cdsUsuariosStatus.AsString = 'B' then
     ToggleStatus.State := tssoff;
 
 end;

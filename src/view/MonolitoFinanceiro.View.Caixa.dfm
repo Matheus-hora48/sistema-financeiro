@@ -1,12 +1,11 @@
 inherited frmCaixa: TfrmCaixa
   Caption = 'Caixa'
-  ClientHeight = 513
   ClientWidth = 863
+  OnCreate = FormCreate
   ExplicitWidth = 875
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
     Width = 863
-    Height = 513
     ExplicitWidth = 857
     inherited CardCadastro: TCard
       Width = 861
@@ -85,7 +84,7 @@ inherited frmCaixa: TfrmCaixa
       ExplicitWidth = 855
       inherited pnlPesquisa: TPanel
         Width = 861
-        ExplicitWidth = 855
+        ExplicitWidth = 861
         object Label2: TLabel [1]
           Left = 464
           Top = 5
@@ -122,7 +121,7 @@ inherited frmCaixa: TfrmCaixa
       end
       inherited pnlGrid: TPanel
         Width = 861
-        ExplicitWidth = 855
+        ExplicitWidth = 861
         inherited DBGrid1: TDBGrid
           Width = 861
           Columns = <

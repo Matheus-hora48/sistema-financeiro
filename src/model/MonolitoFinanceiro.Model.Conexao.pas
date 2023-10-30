@@ -18,11 +18,12 @@ type
   private
     { Private declarations }
     const ARQUIVOCONFIGURACAO = 'MonolitoFinanceiro.cfg';
-  public
-    { Public declarations }
     procedure CarregarConfiguracoes;
     procedure Conectar;
     procedure Desconectar;
+  public
+    { Public declarations }
+
   end;
 
 var

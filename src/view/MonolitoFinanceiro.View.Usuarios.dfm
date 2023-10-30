@@ -1,5 +1,6 @@
 inherited frmUsuarios: TfrmUsuarios
   Caption = 'Cadastro Usu'#225'rios'
+  OnCreate = FormCreate
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
     inherited CardCadastro: TCard

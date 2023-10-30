@@ -42,7 +42,8 @@ begin
   for LContador := 0 to Pred(Grid.Columns.Count) do
     Result := Result + Grid.Columns.Items[LContador].FieldName + ' LIKE '
       + QuotedStr('%' +Trim(Pesquisa) + '%') + ' OR ';
-  Result := ' AND (' + Copy(Result, 1, Length(Result) - 4) + ')';
+
+  Result := ' where (' + Copy(Result, 1, Length(Result) - 4) + ')';
 end;
 
 end.

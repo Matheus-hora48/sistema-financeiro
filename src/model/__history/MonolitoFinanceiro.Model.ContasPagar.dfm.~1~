@@ -1,0 +1,176 @@
+object DataModule2: TDataModule2
+  Height = 308
+  Width = 678
+  PixelsPerInch = 120
+  object sqlContasPagar: TFDQuery
+    Active = True
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select * from usuarios')
+    Left = 72
+    Top = 32
+  end
+  object cdsContasPagar: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuarios'
+    Left = 480
+    Top = 32
+    object cdsContasPagarid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Size = 36
+    end
+    object cdsContasPagarnome: TStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+    object cdsContasPagarlogin: TStringField
+      FieldName = 'login'
+      Origin = 'login'
+    end
+    object cdsContasPagarsenha: TStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 64
+    end
+    object cdsContasPagarstatus: TStringField
+      FieldName = 'status'
+      Origin = 'status'
+      Size = 1
+    end
+    object cdsContasPagardata_cadastro: TDateField
+      FieldName = 'data_cadastro'
+      Origin = 'data_cadastro'
+    end
+    object cdsContasPagarsenha_temporaria: TStringField
+      FieldName = 'senha_temporaria'
+      Origin = 'senha_temporaria'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object dspContasPagar: TDataSetProvider
+    DataSet = sqlContasPagar
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 272
+    Top = 32
+  end
+  object sqlContasPagarDetalhe: TFDQuery
+    Active = True
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select * from usuarios')
+    Left = 72
+    Top = 120
+  end
+  object dspContasPagarDetalhe: TDataSetProvider
+    DataSet = sqlContasPagarDetalhe
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 272
+    Top = 120
+  end
+  object cdsContasPagarDetalhe: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuarios'
+    Left = 480
+    Top = 120
+    object StringField1: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Size = 36
+    end
+    object StringField2: TStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+    object StringField3: TStringField
+      FieldName = 'login'
+      Origin = 'login'
+    end
+    object StringField4: TStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 64
+    end
+    object StringField5: TStringField
+      FieldName = 'status'
+      Origin = 'status'
+      Size = 1
+    end
+    object DateField1: TDateField
+      FieldName = 'data_cadastro'
+      Origin = 'data_cadastro'
+    end
+    object StringField6: TStringField
+      FieldName = 'senha_temporaria'
+      Origin = 'senha_temporaria'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object sqlContasPagarParcela: TFDQuery
+    Active = True
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select * from usuarios')
+    Left = 72
+    Top = 216
+  end
+  object dspContasPagarParcela: TDataSetProvider
+    DataSet = sqlContasPagarParcela
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 272
+    Top = 216
+  end
+  object cdsContasPagarParcela: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuarios'
+    Left = 480
+    Top = 216
+    object StringField7: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Size = 36
+    end
+    object StringField8: TStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+    object StringField9: TStringField
+      FieldName = 'login'
+      Origin = 'login'
+    end
+    object StringField10: TStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 64
+    end
+    object StringField11: TStringField
+      FieldName = 'status'
+      Origin = 'status'
+      Size = 1
+    end
+    object DateField2: TDateField
+      FieldName = 'data_cadastro'
+      Origin = 'data_cadastro'
+    end
+    object StringField12: TStringField
+      FieldName = 'senha_temporaria'
+      Origin = 'senha_temporaria'
+      FixedChar = True
+      Size = 1
+    end
+  end
+end

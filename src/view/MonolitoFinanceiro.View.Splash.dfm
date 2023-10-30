@@ -415,7 +415,7 @@ object frmSplash: TfrmSplash
     object lblNameAplicacao: TLabel
       Left = 0
       Top = 201
-      Width = 640
+      Width = 388
       Height = 62
       Align = alTop
       Alignment = taCenter
@@ -426,8 +426,6 @@ object frmSplash: TfrmSplash
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = -16
-      ExplicitTop = 209
     end
     object imgDll: TImage
       Left = 168
@@ -1566,7 +1564,7 @@ object frmSplash: TfrmSplash
       object lblStatus: TLabel
         Left = 0
         Top = 12
-        Width = 640
+        Width = 5
         Height = 28
         Align = alBottom
         Alignment = taCenter
@@ -1576,7 +1574,6 @@ object frmSplash: TfrmSplash
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 5
       end
     end
   end

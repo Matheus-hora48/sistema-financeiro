@@ -105,59 +105,53 @@
         </DelphiCompile>
         <DCCReference Include="src\view\MonolitoFinanceiro.View.Principal.pas">
             <Form>frmPrincipal</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\view\MonolitoFinanceiro.View.CadastroPadrao.pas">
             <Form>frmCadastroPadrao</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\view\MonolitoFinanceiro.View.Splash.pas">
             <Form>frmSplash</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\model\MonolitoFinanceiro.Model.Conexao.pas">
             <Form>dmConexao</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="src\view\MonolitoFinanceiro.View.Usuarios.pas">
             <Form>frmUsuarios</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\model\MonolitoFinanceiro.Model.Usuario.pas">
             <Form>dmUsuarios</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="src\util\MonolitoFinanceiro.Utilitarios.pas"/>
         <DCCReference Include="src\view\MonolitoFinanceiro.View.Login.pas">
             <Form>frmLogin</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\model\entidades\MonolitoFinanceiro.Model.Entidade.Usuario.pas"/>
         <DCCReference Include="src\model\MonolitoFinanceiro.Model.Sistema.pas">
             <Form>dmSistema</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="src\view\MonolitoFinanceiro.View.RedefinirSenha.pas">
             <Form>frmRedefinirSenha</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\model\MonolitoFinanceiro.Model.Caixa.pas">
             <Form>dmCaixa</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="src\view\MonolitoFinanceiro.View.Caixa.pas">
             <Form>frmCaixa</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\view\MonolitoFinanceiro.View.CaixaSaldo.pas">
             <Form>frmCaixaSaldo</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\model\entidades\MonolitoFinanceiro.Model.Entidade.Caixa.Resumo.pas"/>
+        <DCCReference Include="src\util\Unit1.pas"/>
+        <DCCReference Include="src\model\MonolitoFinanceiro.Model.ContasPagar.pas">
+            <Form>dmContasPagar</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

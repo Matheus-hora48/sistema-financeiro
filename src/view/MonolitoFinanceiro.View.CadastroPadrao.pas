@@ -43,6 +43,7 @@ type
     procedure LimparCampos;
   public
     { Public declarations }
+    SQL: String;
   protected
     procedure Pesquisar; virtual;
   end;
@@ -53,13 +54,13 @@ var
 implementation
 
 uses
-  Datasnap.DBClient, Vcl.WinXCtrls;
+  Datasnap.DBClient, Vcl.WinXCtrls, MonolitoFinanceiro.Utilitarios;
 
 {$R *.dfm}
 
 procedure TfrmCadastroPadrao.btnCancelarClick(Sender: TObject);
 begin
-  TClientDataSet(dataSource1.DataSet).Cancel;
+  dataSource1.DataSet.Cancel;
   pnlPrincipal.ActiveCard := cardPesquisa;
 end;
 
@@ -69,7 +70,7 @@ begin
     exit;
 
   try
-    TClientDataSet(dataSource1.DataSet).Delete;
+    dataSource1.DataSet.Delete;
     TClientDataSet(dataSource1.DataSet).ApplyUpdates(0);
     Application.MessageBox('Registro excluído com sucesso!', 'Atenção', MB_OK + MB_ICONINFORMATION);
     Pesquisar;
@@ -87,7 +88,7 @@ procedure TfrmCadastroPadrao.btnIncluirClick(Sender: TObject);
 begin
   LimparCampos;
   pnlPrincipal.ActiveCard := cardCadastro;
-  TClientDataSet(dataSource1.DataSet).Insert;
+  dataSource1.DataSet.Insert;
 end;
 
 procedure TfrmCadastroPadrao.btnPesquisarClick(Sender: TObject);
@@ -104,7 +105,7 @@ Mensagem := 'Registro alterado com sucesso!';
   if dataSource1.State in [dsInsert] then
     Mensagem := 'Registro incluido com sucesso!';
 
-  TClientDataSet(dataSource1.DataSet).Post;
+  dataSource1.DataSet.Post;
   TClientDataSet(dataSource1.DataSet).ApplyUpdates(0);
   Application.MessageBox(PWideChar(Mensagem), 'Atenção', MB_OK + MB_ICONINFORMATION);
 
@@ -114,7 +115,7 @@ end;
 
 procedure TfrmCadastroPadrao.btnAlterarClick(Sender: TObject);
 begin
-  TClientDataSet(dataSource1.DataSet).Edit;
+  dataSource1.DataSet.Edit;
   pnlPrincipal.ActiveCard := cardCadastro;
 end;
 
@@ -147,8 +148,14 @@ begin
 end;
 
 procedure TfrmCadastroPadrao.Pesquisar;
+
 begin
   HabilitarBotoes;
+
+  DataSource1.DataSet.Close;
+  TClientDataSet( DataSource1.DataSet ).CommandText
+    := SQL + TUtilitarios.LikeFind(edtPesquisar.Text,DBGrid1);
+   DataSource1.DataSet.Open;
 end;
 
 end.
