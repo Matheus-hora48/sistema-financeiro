@@ -1,6 +1,6 @@
 object dmContasPagar: TdmContasPagar
   Height = 338
-  Width = 636
+  Width = 852
   PixelsPerInch = 120
   object sqlContasPagar: TFDQuery
     Active = True
@@ -14,6 +14,7 @@ object dmContasPagar: TdmContasPagar
   object cdsContasPagar: TClientDataSet
     Active = True
     Aggregates = <>
+    IndexFieldNames = 'id'
     Params = <>
     ProviderName = 'dspContasPagar'
     Left = 496
@@ -65,11 +66,21 @@ object dmContasPagar: TdmContasPagar
   object sqlContasPagarDetalhe: TFDQuery
     Active = True
     IndexFieldNames = 'id_conta_pagar'
+    DetailFields = 'id_conta_pagar'
     Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from contas_pagar_detalhes')
     Left = 88
     Top = 128
+    ParamData = <
+      item
+        Position = 1
+        Name = 'id_conta_pagar'
+        DataType = ftString
+        Value = '1'
+      end>
   end
   object dspContasPagarDetalhe: TDataSetProvider
     DataSet = sqlContasPagarDetalhe
@@ -117,7 +128,22 @@ object dmContasPagar: TdmContasPagar
         DataType = ftString
         Size = 1
       end>
-    IndexDefs = <>
+    IndexDefs = <
+      item
+        Name = 'DEFAULT_ORDER'
+      end
+      item
+        Name = 'PRIMARY_KEY'
+        Fields = 'id'
+        Options = [ixUnique]
+      end
+      item
+        Name = 'CHANGEINDEX'
+      end>
+    IndexFieldNames = 'id_conta_pagar'
+    MasterFields = 'id'
+    MasterSource = DataSource1
+    PacketRecords = 0
     Params = <>
     ProviderName = 'dspContasPagarDetalhe'
     StoreDefs = True
@@ -168,11 +194,21 @@ object dmContasPagar: TdmContasPagar
   object sqlContasPagarParcela: TFDQuery
     Active = True
     IndexFieldNames = 'id_conta_pagar'
+    DetailFields = 'id_conta_pagar'
     Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
     SQL.Strings = (
       'select * from contas_pagar_parcelas')
     Left = 88
     Top = 224
+    ParamData = <
+      item
+        Position = 1
+        Name = 'id_conta_pagar'
+        DataType = ftString
+        Value = '1'
+      end>
   end
   object dspContasPagarParcela: TDataSetProvider
     DataSet = sqlContasPagarParcela
@@ -183,6 +219,10 @@ object dmContasPagar: TdmContasPagar
   object cdsContasPagarParcela: TClientDataSet
     Active = True
     Aggregates = <>
+    IndexFieldNames = 'id_conta_pagar'
+    MasterFields = 'id'
+    MasterSource = DataSource1
+    PacketRecords = 0
     Params = <>
     ProviderName = 'dspContasPagarParcela'
     Left = 496
@@ -218,5 +258,20 @@ object dmContasPagar: TdmContasPagar
       FieldName = 'data_recebimento'
       Origin = 'data_recebimento'
     end
+  end
+  object DataSource1: TDataSource
+    DataSet = cdsContasPagar
+    Left = 672
+    Top = 40
+  end
+  object DataSource2: TDataSource
+    DataSet = cdsContasPagarDetalhe
+    Left = 672
+    Top = 136
+  end
+  object DataSource3: TDataSource
+    DataSet = cdsContasPagarParcela
+    Left = 672
+    Top = 224
   end
 end

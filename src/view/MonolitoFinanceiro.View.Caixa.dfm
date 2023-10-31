@@ -3,13 +3,16 @@ inherited frmCaixa: TfrmCaixa
   ClientWidth = 863
   OnCreate = FormCreate
   ExplicitWidth = 875
+  ExplicitHeight = 551
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
     Width = 863
+    ActiveCard = CardCadastro
     ExplicitWidth = 857
     inherited CardCadastro: TCard
       Width = 861
-      ExplicitWidth = 861
+      ExplicitWidth = 855
+      ExplicitHeight = 502
       object lblNDocumento: TLabel [0]
         Left = 24
         Top = 21
@@ -33,14 +36,15 @@ inherited frmCaixa: TfrmCaixa
       end
       inherited Panel1: TPanel
         Width = 861
-        ExplicitWidth = 861
+        ExplicitTop = 421
+        ExplicitWidth = 855
         inherited btnCancelar: TButton
           Left = 745
-          ExplicitLeft = 745
+          ExplicitLeft = 739
         end
         inherited btnSalvar: TButton
           Left = 629
-          ExplicitLeft = 629
+          ExplicitLeft = 623
         end
       end
       object edtNDocumento: TEdit
@@ -81,7 +85,8 @@ inherited frmCaixa: TfrmCaixa
     end
     inherited CardPesquisa: TCard
       Width = 861
-      ExplicitWidth = 855
+      ExplicitWidth = 861
+      ExplicitHeight = 511
       inherited pnlPesquisa: TPanel
         Width = 861
         ExplicitWidth = 861
@@ -94,7 +99,7 @@ inherited frmCaixa: TfrmCaixa
         end
         inherited btnPesquisar: TButton
           Left = 745
-          ExplicitLeft = 739
+          ExplicitLeft = 745
         end
         object cbTipo: TComboBox
           Left = 464
@@ -113,15 +118,17 @@ inherited frmCaixa: TfrmCaixa
       end
       inherited pnlPesquisaButoes: TPanel
         Width = 861
-        ExplicitWidth = 855
+        ExplicitTop = 422
+        ExplicitWidth = 861
         inherited btnFechar: TButton
           Left = 745
-          ExplicitLeft = 739
+          ExplicitLeft = 745
         end
       end
       inherited pnlGrid: TPanel
         Width = 861
         ExplicitWidth = 861
+        ExplicitHeight = 333
         inherited DBGrid1: TDBGrid
           Width = 861
           Columns = <

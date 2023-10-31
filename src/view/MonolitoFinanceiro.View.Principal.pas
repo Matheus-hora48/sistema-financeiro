@@ -18,11 +18,13 @@ type
     Financeiro1: TMenuItem;
     Caixa1: TMenuItem;
     ResumoCaixa1: TMenuItem;
+    ContasPagar1: TMenuItem;
     procedure nmuUsuariosClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Caixa1Click(Sender: TObject);
     procedure ResumoCaixa1Click(Sender: TObject);
+    procedure ContasPagar1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,12 +41,19 @@ implementation
 uses MonolitoFinanceiro.View.CadastroPadrao, MonolitoFinanceiro.View.Splash,
   MonolitoFinanceiro.View.Usuarios, MonolitoFinanceiro.View.Login,
   MonolitoFinanceiro.Model.Usuario, MonolitoFinanceiro.View.RedefinirSenha,
-  MonolitoFinanceiro.View.Caixa, MonolitoFinanceiro.View.CaixaSaldo;
+  MonolitoFinanceiro.View.Caixa, MonolitoFinanceiro.View.CaixaSaldo,
+  MonolitoFinanceiro.View.ContasPagar;
 
 procedure TfrmPrincipal.Caixa1Click(Sender: TObject);
 begin
   Application.CreateForm(TfrmCaixa, frmCaixa);
   frmCaixa.Show;
+end;
+
+procedure TfrmPrincipal.ContasPagar1Click(Sender: TObject);
+begin
+  Application.CreateForm(TfrmContasPagar, frmContasPagar);
+  frmContasPagar.Show;
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);

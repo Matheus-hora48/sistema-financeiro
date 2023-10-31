@@ -23,8 +23,8 @@ uses
   MonolitoFinanceiro.View.CaixaSaldo in 'src\view\MonolitoFinanceiro.View.CaixaSaldo.pas' {frmCaixaSaldo},
   MonolitoFinanceiro.Model.Entidade.Caixa.Resumo in 'src\model\entidades\MonolitoFinanceiro.Model.Entidade.Caixa.Resumo.pas',
   Unit1 in 'src\util\Unit1.pas',
-  MonolitoFinanceiro.Model.ContasPagar in 'src\model\MonolitoFinanceiro.Model.ContasPagar.pas' {dmContasPagar: TDataModule};
-
+  MonolitoFinanceiro.Model.ContasPagar in 'src\model\MonolitoFinanceiro.Model.ContasPagar.pas' {dmContasPagar: TDataModule},
+  MonolitoFinanceiro.View.ContasPagar in 'src\view\MonolitoFinanceiro.View.ContasPagar.pas' {frmContasPagar};
 {$R *.res}
 
   procedure Splash;

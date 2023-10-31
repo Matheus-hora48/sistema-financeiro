@@ -36,6 +36,9 @@ type
     cdsContasPagarParceladata_vencimento: TDateField;
     cdsContasPagarParcelavalor: TFMTBCDField;
     cdsContasPagarParceladata_recebimento: TDateField;
+    DataSource1: TDataSource;
+    DataSource2: TDataSource;
+    DataSource3: TDataSource;
   private
     { Private declarations }
   public
