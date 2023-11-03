@@ -1,0 +1,86 @@
+object DataModule2: TDataModule2
+  Height = 637
+  Width = 1000
+  PixelsPerInch = 120
+  object sqlContasReceber: TFDQuery
+    Active = True
+    IndexFieldNames = 'id'
+    DetailFields = 'id'
+    ChangeAlertName = 'sqlContasReceber'
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select * from contas_receber')
+    Left = 232
+    Top = 16
+  end
+  object dspContasReceber: TDataSetProvider
+    DataSet = sqlContasReceber
+    Left = 232
+    Top = 96
+  end
+  object cdsContasReceber: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspContasReceber'
+    Left = 232
+    Top = 184
+    object cdsContasReceberid: TStringField
+      FieldName = 'id'
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasRecebernumero_documento: TStringField
+      FieldName = 'numero_documento'
+      Required = True
+    end
+    object cdsContasRecebervalor_venda: TFMTBCDField
+      FieldName = 'valor_venda'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasRecebervalor_abatido: TFMTBCDField
+      FieldName = 'valor_abatido'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasReceberdata_compra: TDateField
+      FieldName = 'data_compra'
+      Required = True
+    end
+    object cdsContasReceberdata_cadastro: TDateField
+      FieldName = 'data_cadastro'
+      Required = True
+    end
+  end
+  object DataSource: TDataSource
+    DataSet = cdsContasReceber
+    Left = 232
+    Top = 264
+  end
+  object sqlContasReceberDetalhes: TFDQuery
+    IndexFieldNames = 'id_conta_receber'
+    MasterSource = DataSource
+    MasterFields = 'id'
+    ChangeAlertName = 'sqlContasReceberDetalhes'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_receber_detalhes'
+      'where'
+      'contas_receber_detalhes.id_conta_receber = :id')
+    Left = 232
+    Top = 352
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '429F9FC1-7C69-417D-9A2C-D2E55F369B6D'
+      end>
+  end
+end

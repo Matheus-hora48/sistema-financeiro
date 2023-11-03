@@ -1,0 +1,565 @@
+inherited frmContasReceber: TfrmContasReceber
+  Caption = 'Contas Receber'
+  ClientHeight = 737
+  ClientWidth = 1151
+  OnCreate = FormCreate
+  ExplicitWidth = 1163
+  ExplicitHeight = 775
+  TextHeight = 28
+  inherited PnlPrincipal: TCardPanel
+    Width = 1151
+    Height = 737
+    ExplicitWidth = 1145
+    ExplicitHeight = 728
+    inherited CardCadastro: TCard
+      Width = 1149
+      Height = 735
+      ExplicitWidth = 1149
+      ExplicitHeight = 735
+      object lblDataCompra: TLabel [0]
+        Left = 24
+        Top = 440
+        Width = 113
+        Height = 28
+        Caption = 'Data compra'
+      end
+      object lblDataVencimento: TLabel [1]
+        Left = 592
+        Top = 178
+        Width = 259
+        Height = 28
+        Caption = 'Data Do Primeiro Vencimento'
+      end
+      object lblDesconto: TLabel [2]
+        Left = 24
+        Top = 268
+        Width = 83
+        Height = 28
+        Caption = 'Desconto'
+      end
+      object lblDetalhes: TLabel [3]
+        Left = 24
+        Top = 352
+        Width = 75
+        Height = 28
+        Caption = 'Detalhes'
+      end
+      object lblNDocumento: TLabel [4]
+        Left = 24
+        Top = 94
+        Width = 163
+        Height = 28
+        Caption = 'N'#186' Do Documento'
+      end
+      object lblQTDParcelas: TLabel [5]
+        Left = 592
+        Top = 94
+        Width = 112
+        Height = 28
+        Caption = 'QTD Parcelas'
+      end
+      object lblValorVenda: TLabel [6]
+        Left = 24
+        Top = 184
+        Width = 104
+        Height = 28
+        Caption = 'Valor Venda'
+      end
+      inherited Panel1: TPanel
+        Top = 654
+        Width = 1149
+        ExplicitTop = 654
+        ExplicitWidth = 1149
+        inherited btnCancelar: TButton
+          Left = 1033
+          ExplicitLeft = 1033
+        end
+        inherited btnSalvar: TButton
+          Left = 917
+          ExplicitLeft = 917
+        end
+      end
+      object btnGerarParcelas: TButton
+        Left = 592
+        Top = 419
+        Width = 481
+        Height = 81
+        Cancel = True
+        Caption = 'Gerar parcelas'
+        DisabledImageName = 'btnSalvar'
+        ImageAlignment = iaTop
+        ImageIndex = 7
+        ImageMargins.Top = 10
+        Images = ImageList1
+        TabOrder = 1
+      end
+      object DBGrid4: TDBGrid
+        Left = 592
+        Top = 268
+        Width = 481
+        Height = 145
+        DataSource = DataSource3
+        TabOrder = 2
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -20
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'numero_parcela'
+            Title.Caption = 'Parcela'
+            Width = 111
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'valor'
+            Title.Alignment = taCenter
+            Title.Caption = 'Valor'
+            Width = 164
+            Visible = True
+          end
+          item
+            Alignment = taRightJustify
+            Expanded = False
+            FieldName = 'data_vencimento'
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Vencimento'
+            Width = 197
+            Visible = True
+          end>
+      end
+      object dtpDataCompra: TDateTimePicker
+        Tag = 4
+        Left = 24
+        Top = 474
+        Width = 481
+        Height = 36
+        Date = 45230.000000000000000000
+        Time = 0.598206273149116900
+        ImeName = 'Portuguese (Brazilian ABNT)'
+        TabOrder = 3
+      end
+      object dtpDataVencimento: TDateTimePicker
+        Left = 592
+        Top = 212
+        Width = 481
+        Height = 36
+        Date = 45230.000000000000000000
+        Time = 0.607125462964177100
+        TabOrder = 4
+      end
+      object edtDesconto: TDBEdit
+        Left = 24
+        Top = 302
+        Width = 481
+        Height = 36
+        DataField = 'valor_abatido'
+        DataSource = DataSource1
+        TabOrder = 5
+      end
+      object edtDetalhes: TDBEdit
+        Left = 24
+        Top = 386
+        Width = 481
+        Height = 36
+        DataField = 'detalhes'
+        DataSource = DataSource2
+        ImeName = 'Portuguese (Brazilian ABNT)'
+        TabOrder = 6
+      end
+      object edtNDocumento: TDBEdit
+        Left = 24
+        Top = 128
+        Width = 481
+        Height = 36
+        DataField = 'numero_documento'
+        DataSource = DataSource1
+        TabOrder = 7
+      end
+      object edtParcelas: TDBEdit
+        Left = 592
+        Top = 120
+        Width = 481
+        Height = 36
+        DataField = 'qtd_parcelas'
+        DataSource = DataSource2
+        TabOrder = 8
+        StyleName = 'Windows'
+      end
+      object edtValorVenda: TDBEdit
+        Left = 24
+        Top = 218
+        Width = 481
+        Height = 36
+        DataField = 'valor_venda'
+        DataSource = DataSource1
+        TabOrder = 9
+      end
+      object Panel5: TPanel
+        Left = 0
+        Top = 0
+        Width = 1149
+        Height = 72
+        Align = alTop
+        BevelOuter = bvNone
+        TabOrder = 10
+        object Panel6: TPanel
+          Left = 0
+          Top = 0
+          Width = 505
+          Height = 72
+          Align = alLeft
+          BevelOuter = bvNone
+          Caption = 'Contas a receber'
+          TabOrder = 0
+        end
+        object Panel7: TPanel
+          Left = 642
+          Top = 0
+          Width = 507
+          Height = 72
+          Align = alRight
+          BevelOuter = bvNone
+          Caption = 'Parcelas'
+          TabOrder = 1
+        end
+      end
+      object Panel8: TPanel
+        Left = 592
+        Top = 506
+        Width = 481
+        Height = 46
+        BevelOuter = bvNone
+        TabOrder = 11
+        object lblValorParcela: TLabel
+          Left = 440
+          Top = 0
+          Width = 41
+          Height = 46
+          Align = alRight
+          Alignment = taRightJustify
+          Caption = 'R$ '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Layout = tlCenter
+          ExplicitHeight = 37
+        end
+        object lblParcela: TLabel
+          Left = 0
+          Top = 0
+          Width = 153
+          Height = 46
+          Align = alLeft
+          Caption = 'Valor por parcela:'
+          Layout = tlCenter
+          ExplicitHeight = 28
+        end
+      end
+      object Panel9: TPanel
+        Left = 592
+        Top = 617
+        Width = 481
+        Height = 53
+        BevelOuter = bvNone
+        TabOrder = 12
+        object Label2: TLabel
+          Left = 0
+          Top = 0
+          Width = 137
+          Height = 53
+          Align = alLeft
+          Caption = 'Qtd de parcelas'
+          Layout = tlCenter
+          ExplicitHeight = 28
+        end
+        object lblQtdPrarcelasValor: TLabel
+          Left = 474
+          Top = 0
+          Width = 7
+          Height = 53
+          Align = alRight
+          Alignment = taRightJustify
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Layout = tlCenter
+          ExplicitHeight = 37
+        end
+      end
+      object Panel10: TPanel
+        Left = 592
+        Top = 558
+        Width = 481
+        Height = 53
+        BevelOuter = bvNone
+        TabOrder = 13
+        object Label3: TLabel
+          Left = 0
+          Top = 0
+          Width = 92
+          Height = 53
+          Align = alLeft
+          Caption = 'Valor Total'
+          Layout = tlCenter
+          ExplicitHeight = 28
+        end
+        object lblValorTotal: TLabel
+          Left = 440
+          Top = 0
+          Width = 41
+          Height = 53
+          Align = alRight
+          Alignment = taRightJustify
+          Caption = 'R$ '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -27
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Layout = tlCenter
+          ExplicitHeight = 37
+        end
+      end
+      object RadioGroup: TDBRadioGroup
+        Left = 24
+        Top = 524
+        Width = 481
+        Height = 125
+        BiDiMode = bdLeftToRight
+        Caption = 'Meio'
+        Columns = 2
+        DataField = 'meio'
+        DataSource = DataSource2
+        Items.Strings = (
+          'Dinheiro'
+          'Cart'#227'o de credito'
+          'Cart'#227'o de debito')
+        ParentBiDiMode = False
+        TabOrder = 14
+        Values.Strings = (
+          'A'
+          'C'
+          'D')
+        StyleName = 'Windows'
+      end
+    end
+    inherited CardPesquisa: TCard
+      Width = 1149
+      Height = 735
+      ExplicitWidth = 1143
+      ExplicitHeight = 726
+      inherited pnlPesquisa: TPanel
+        Width = 1149
+        ExplicitWidth = 1143
+        inherited btnPesquisar: TButton
+          Left = 1033
+          ExplicitLeft = 1027
+        end
+      end
+      inherited pnlPesquisaButoes: TPanel
+        Top = 646
+        Width = 1149
+        ExplicitTop = 637
+        ExplicitWidth = 1143
+        inherited btnFechar: TButton
+          Left = 1033
+          ExplicitLeft = 1027
+        end
+      end
+      inherited pnlGrid: TPanel
+        Width = 705
+        Height = 557
+        Align = alLeft
+        Padding.Top = 40
+        Padding.Right = 20
+        Padding.Bottom = 20
+        ExplicitWidth = 705
+        ExplicitHeight = 548
+        inherited DBGrid1: TDBGrid
+          Top = 40
+          Width = 685
+          Height = 233
+          Align = alTop
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'numero_documento'
+              Title.Caption = 'N'#186' Documento'
+              Width = 161
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'valor_venda'
+              Title.Caption = 'Valor Venda'
+              Width = 144
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'valor_abatido'
+              Title.Caption = 'Valor Abatido'
+              Width = 203
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'data_compra'
+              Title.Caption = 'Data Venda'
+              Width = 157
+              Visible = True
+            end>
+        end
+        object DBGrid2: TDBGrid
+          Left = 0
+          Top = 328
+          Width = 685
+          Height = 209
+          Align = alBottom
+          DataSource = DataSource2
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -20
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'detalhes'
+              Title.Caption = 'Detalhes'
+              Width = 378
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'usuario'
+              Title.Caption = 'Usu'#225'rio'
+              Width = 115
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'meio'
+              Title.Caption = 'Meio'
+              Width = 94
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'status'
+              Title.Caption = 'Status'
+              Width = 77
+              Visible = True
+            end>
+        end
+        object Panel2: TPanel
+          Left = 0
+          Top = 273
+          Width = 685
+          Height = 55
+          Align = alClient
+          BevelOuter = bvNone
+          Caption = 'Detalhes'
+          TabOrder = 2
+          ExplicitHeight = 46
+        end
+      end
+      object Panel3: TPanel
+        Left = 705
+        Top = 89
+        Width = 444
+        Height = 557
+        Align = alClient
+        BevelOuter = bvNone
+        Padding.Bottom = 20
+        TabOrder = 3
+        ExplicitWidth = 438
+        ExplicitHeight = 548
+        object Panel4: TPanel
+          Left = 0
+          Top = 0
+          Width = 444
+          Height = 41
+          Align = alTop
+          BevelOuter = bvNone
+          Caption = 'Parcelas'
+          TabOrder = 0
+          ExplicitWidth = 438
+        end
+        object DBGrid3: TDBGrid
+          Left = 0
+          Top = 41
+          Width = 444
+          Height = 496
+          Align = alClient
+          DataSource = DataSource3
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -20
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'valor'
+              Title.Caption = 'Valor'
+              Width = 76
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'numero_parcela'
+              Title.Caption = 'Parcela'
+              Width = 82
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'data_vencimento'
+              Title.Caption = 'Vencimento'
+              Width = 134
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'data_recebimento'
+              Title.Caption = 'Recebimento'
+              Width = 133
+              Visible = True
+            end>
+        end
+      end
+    end
+  end
+  inherited ImageList1: TImageList
+    Left = 857
+    Top = 34
+  end
+  inherited DataSource1: TDataSource
+    Left = 497
+    Top = 34
+  end
+  object DataSource2: TDataSource
+    Left = 585
+    Top = 33
+  end
+  object DataSource3: TDataSource
+    Left = 673
+    Top = 33
+  end
+end

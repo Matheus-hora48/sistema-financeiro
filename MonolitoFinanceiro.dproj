@@ -155,6 +155,15 @@
         <DCCReference Include="src\view\MonolitoFinanceiro.View.ContasPagar.pas">
             <Form>frmContasPagar</Form>
         </DCCReference>
+        <DCCReference Include="src\view\MonolitoFinanceiro.View.ContasReceber.pas">
+            <Form>frmContasReceber</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\model\MonolitoFinanceiro.Model.ContasReceber.pas">
+            <Form>dmContasReceber</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

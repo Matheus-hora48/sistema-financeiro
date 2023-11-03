@@ -24,7 +24,10 @@ uses
   MonolitoFinanceiro.Model.Entidade.Caixa.Resumo in 'src\model\entidades\MonolitoFinanceiro.Model.Entidade.Caixa.Resumo.pas',
   Unit1 in 'src\util\Unit1.pas',
   MonolitoFinanceiro.Model.ContasPagar in 'src\model\MonolitoFinanceiro.Model.ContasPagar.pas' {dmContasPagar: TDataModule},
-  MonolitoFinanceiro.View.ContasPagar in 'src\view\MonolitoFinanceiro.View.ContasPagar.pas' {frmContasPagar};
+  MonolitoFinanceiro.View.ContasPagar in 'src\view\MonolitoFinanceiro.View.ContasPagar.pas' {frmContasPagar},
+  MonolitoFinanceiro.View.ContasReceber in 'src\view\MonolitoFinanceiro.View.ContasReceber.pas' {frmContasReceber},
+  MonolitoFinanceiro.Model.ContasReceber in 'src\model\MonolitoFinanceiro.Model.ContasReceber.pas' {dmContasReceber: TDataModule};
+
 {$R *.res}
 
   procedure Splash;
@@ -85,7 +88,6 @@ begin
   Splash;
   Application.CreateForm(TdmConexao, dmConexao);
   Application.CreateForm(TdmUsuarios, dmUsuarios);
-  Application.CreateForm(TdmContasPagar, dmContasPagar);
   if Logar then
   begin
     Application.CreateForm(TfrmPrincipal, frmPrincipal);

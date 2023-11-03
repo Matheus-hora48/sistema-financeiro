@@ -1,0 +1,221 @@
+object dmContasPagar: TdmContasPagar
+  Height = 632
+  Width = 852
+  PixelsPerInch = 120
+  object sqlContasPagar: TFDQuery
+    Active = True
+    IndexFieldNames = 'id'
+    DetailFields = 'id'
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select * from contas_pagar')
+    Left = 232
+    Top = 16
+  end
+  object sqlContasPagarDetalhes: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_conta_pagar'
+    MasterSource = DataSource1
+    MasterFields = 'id'
+    DetailFields = 'id_conta_pagar'
+    ChangeAlertName = 'sqlContasPagarDetalhe'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_pagar_detalhes'
+      'where'
+      'contas_pagar_detalhes.id_conta_pagar = :id')
+    Left = 232
+    Top = 352
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '2'
+      end>
+  end
+  object sqlContasPagarParcela: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_conta_pagar'
+    MasterSource = DataSource1
+    MasterFields = 'id'
+    DetailFields = 'id_conta_pagar'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_pagar_parcelas'
+      'where'
+      'contas_pagar_parcelas.id_conta_pagar = :id')
+    Left = 232
+    Top = 440
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '1'
+      end>
+  end
+  object DataSource1: TDataSource
+    DataSet = sqlContasPagar
+    Left = 232
+    Top = 264
+  end
+  object dspContasPagar: TDataSetProvider
+    DataSet = sqlContasPagar
+    Left = 232
+    Top = 96
+  end
+  object cdsContasPagar: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspContasPagar'
+    Left = 232
+    Top = 184
+    object cdsContasPagarid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasPagarnumero_documento: TStringField
+      FieldName = 'numero_documento'
+      Origin = 'numero_documento'
+      Required = True
+    end
+    object cdsContasPagarvalor_compra: TFMTBCDField
+      FieldName = 'valor_compra'
+      Origin = 'valor_compra'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasPagarvalor_abatido: TFMTBCDField
+      FieldName = 'valor_abatido'
+      Origin = 'valor_abatido'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasPagardata_compra: TDateField
+      FieldName = 'data_compra'
+      Origin = 'data_compra'
+      Required = True
+    end
+    object cdsContasPagardata_cadastro: TDateField
+      FieldName = 'data_cadastro'
+      Origin = 'data_cadastro'
+      Required = True
+    end
+    object cdsContasPagarsqlContasPagarDetalhes: TDataSetField
+      FieldName = 'sqlContasPagarDetalhes'
+    end
+    object cdsContasPagarsqlContasPagarParcela: TDataSetField
+      FieldName = 'sqlContasPagarParcela'
+    end
+  end
+  object cdsContasPagarDetalhes: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsContasPagarsqlContasPagarDetalhes
+    Params = <>
+    Left = 432
+    Top = 352
+    object cdsContasPagarDetalhesid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasPagarDetalhesid_conta_pagar: TStringField
+      FieldName = 'id_conta_pagar'
+      Origin = 'id_conta_pagar'
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasPagarDetalhesdetalhes: TStringField
+      FieldName = 'detalhes'
+      Origin = 'detalhes'
+      Required = True
+      Size = 200
+    end
+    object cdsContasPagarDetalhesusuario: TStringField
+      FieldName = 'usuario'
+      Origin = 'usuario'
+      Required = True
+      Size = 50
+    end
+    object cdsContasPagarDetalhesmeio: TStringField
+      FieldName = 'meio'
+      Origin = 'meio'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+    object cdsContasPagarDetalhesstatus: TStringField
+      FieldName = 'status'
+      Origin = 'status'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+    object cdsContasPagarDetalhesqtd_parcelas: TIntegerField
+      FieldName = 'qtd_parcelas'
+      Origin = 'qtd_parcelas'
+    end
+  end
+  object cdsContasPagarParcela: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsContasPagarsqlContasPagarParcela
+    Params = <>
+    Left = 432
+    Top = 440
+    object cdsContasPagarParcelaid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasPagarParcelaid_conta_pagar: TStringField
+      FieldName = 'id_conta_pagar'
+      Origin = 'id_conta_pagar'
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasPagarParceladata_vencimento: TDateField
+      FieldName = 'data_vencimento'
+      Origin = 'data_vencimento'
+      Required = True
+    end
+    object cdsContasPagarParcelavalor: TFMTBCDField
+      FieldName = 'valor'
+      Origin = 'valor'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasPagarParceladata_recebimento: TDateField
+      FieldName = 'data_recebimento'
+      Origin = 'data_recebimento'
+    end
+    object cdsContasPagarParcelanumero_parcela: TIntegerField
+      FieldName = 'numero_parcela'
+      Origin = 'numero_parcela'
+    end
+  end
+end

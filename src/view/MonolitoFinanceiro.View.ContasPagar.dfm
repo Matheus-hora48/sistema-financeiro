@@ -1,24 +1,21 @@
 inherited frmContasPagar: TfrmContasPagar
   Caption = 'Conta a pagar'
-  ClientHeight = 676
+  ClientHeight = 777
   ClientWidth = 1101
-  ExplicitLeft = 3
-  ExplicitTop = -153
+  OnCreate = FormCreate
   ExplicitWidth = 1113
-  ExplicitHeight = 714
+  ExplicitHeight = 815
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
     Width = 1101
-    Height = 676
-    ActiveCard = CardCadastro
-    ExplicitWidth = 1101
-    ExplicitHeight = 776
+    Height = 777
+    ExplicitWidth = 1095
+    ExplicitHeight = 768
     inherited CardCadastro: TCard
       Width = 1099
-      Height = 674
-      ExplicitLeft = 2
-      ExplicitWidth = 1099
-      ExplicitHeight = 679
+      Height = 775
+      ExplicitWidth = 1721
+      ExplicitHeight = 766
       object lblValorCompra: TLabel [0]
         Left = 24
         Top = 184
@@ -69,45 +66,20 @@ inherited frmContasPagar: TfrmContasPagar
         Caption = 'Data Do Primeiro Vencimento'
       end
       inherited Panel1: TPanel
-        Top = 593
+        Top = 694
         Width = 1099
-        TabOrder = 2
-        ExplicitLeft = -16
-        ExplicitTop = 598
+        ExplicitTop = 694
         ExplicitWidth = 1099
         inherited btnCancelar: TButton
           Left = 983
           TabOrder = 1
-          ExplicitLeft = 798
+          ExplicitLeft = 983
         end
         inherited btnSalvar: TButton
           Left = 867
           TabOrder = 0
-          ExplicitLeft = 682
+          ExplicitLeft = 867
         end
-      end
-      object edtValorCompra: TEdit
-        Left = 24
-        Top = 218
-        Width = 481
-        Height = 36
-        TabOrder = 1
-      end
-      object edtDesconto: TEdit
-        Tag = 2
-        Left = 24
-        Top = 302
-        Width = 481
-        Height = 36
-        TabOrder = 3
-      end
-      object edtDetalhes: TEdit
-        Tag = 3
-        Left = 24
-        Top = 386
-        Width = 481
-        Height = 36
-        TabOrder = 4
       end
       object dtpDataCompra: TDateTimePicker
         Tag = 4
@@ -117,19 +89,8 @@ inherited frmContasPagar: TfrmContasPagar
         Height = 36
         Date = 45230.000000000000000000
         Time = 0.598206273149116900
-        TabOrder = 6
-      end
-      object RadioGroup: TRadioGroup
-        Left = 24
-        Top = 532
-        Width = 481
-        Height = 125
-        Caption = 'Meio'
-        Items.Strings = (
-          'Dinheiro'
-          'Cart'#227'o de credito'
-          'Cart'#227'o de debito')
-        TabOrder = 5
+        ImeName = 'Portuguese (Brazilian ABNT)'
+        TabOrder = 1
       end
       object Panel3: TPanel
         Left = 0
@@ -138,7 +99,7 @@ inherited frmContasPagar: TfrmContasPagar
         Height = 72
         Align = alTop
         BevelOuter = bvNone
-        TabOrder = 7
+        TabOrder = 2
         object Panel4: TPanel
           Left = 0
           Top = 0
@@ -160,13 +121,6 @@ inherited frmContasPagar: TfrmContasPagar
           TabOrder = 1
         end
       end
-      object edtNDocumento: TEdit
-        Left = 24
-        Top = 128
-        Width = 481
-        Height = 36
-        TabOrder = 0
-      end
       object dtpDataVencimento: TDateTimePicker
         Left = 592
         Top = 212
@@ -174,28 +128,20 @@ inherited frmContasPagar: TfrmContasPagar
         Height = 36
         Date = 45230.000000000000000000
         Time = 0.607125462964177100
-        TabOrder = 9
-      end
-      object cbParcelas: TComboBox
-        Left = 592
-        Top = 128
-        Width = 481
-        Height = 36
-        CanUndoSelText = True
-        TabOrder = 10
+        TabOrder = 4
       end
       object Panel6: TPanel
         Left = 592
-        Top = 355
+        Top = 506
         Width = 481
-        Height = 67
+        Height = 46
         BevelOuter = bvNone
-        TabOrder = 11
+        TabOrder = 5
         object lblValorParcela: TLabel
           Left = 440
           Top = 0
           Width = 41
-          Height = 67
+          Height = 37
           Align = alRight
           Alignment = taRightJustify
           Caption = 'R$ '
@@ -206,41 +152,38 @@ inherited frmContasPagar: TfrmContasPagar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitHeight = 37
         end
         object lblParcela: TLabel
           Left = 0
           Top = 0
           Width = 153
-          Height = 67
+          Height = 28
           Align = alLeft
           Caption = 'Valor por parcela:'
           Layout = tlCenter
-          ExplicitHeight = 28
         end
       end
       object Panel7: TPanel
         Left = 592
-        Top = 487
+        Top = 617
         Width = 481
         Height = 53
         BevelOuter = bvNone
-        TabOrder = 12
+        TabOrder = 6
         object Label2: TLabel
           Left = 0
           Top = 0
           Width = 137
-          Height = 53
+          Height = 28
           Align = alLeft
           Caption = 'Qtd de parcelas'
           Layout = tlCenter
-          ExplicitHeight = 28
         end
         object lblQtdPrarcelasValor: TLabel
           Left = 474
           Top = 0
           Width = 7
-          Height = 53
+          Height = 37
           Align = alRight
           Alignment = taRightJustify
           Font.Charset = DEFAULT_CHARSET
@@ -250,12 +193,11 @@ inherited frmContasPagar: TfrmContasPagar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitHeight = 37
         end
       end
       object btnGerarParcelas: TButton
         Left = 592
-        Top = 268
+        Top = 419
         Width = 481
         Height = 81
         Cancel = True
@@ -265,31 +207,30 @@ inherited frmContasPagar: TfrmContasPagar
         ImageIndex = 7
         ImageMargins.Top = 10
         Images = ImageList1
-        TabOrder = 8
+        TabOrder = 3
         OnClick = btnGerarParcelasClick
       end
       object Panel8: TPanel
         Left = 592
-        Top = 428
+        Top = 558
         Width = 481
         Height = 53
         BevelOuter = bvNone
-        TabOrder = 13
+        TabOrder = 7
         object Label3: TLabel
           Left = 0
           Top = 0
           Width = 92
-          Height = 53
+          Height = 28
           Align = alLeft
           Caption = 'Valor Total'
           Layout = tlCenter
-          ExplicitHeight = 28
         end
         object lblValorTotal: TLabel
           Left = 440
           Top = 0
           Width = 41
-          Height = 53
+          Height = 37
           Align = alRight
           Alignment = taRightJustify
           Caption = 'R$ '
@@ -300,49 +241,155 @@ inherited frmContasPagar: TfrmContasPagar
           Font.Style = [fsBold]
           ParentFont = False
           Layout = tlCenter
-          ExplicitHeight = 37
         end
+      end
+      object edtNDocumento: TDBEdit
+        Left = 24
+        Top = 128
+        Width = 481
+        Height = 36
+        DataField = 'numero_documento'
+        DataSource = DataSource1
+        TabOrder = 8
+      end
+      object edtValorCompra: TDBEdit
+        Left = 24
+        Top = 218
+        Width = 481
+        Height = 36
+        DataField = 'valor_compra'
+        DataSource = DataSource1
+        TabOrder = 9
+      end
+      object edtDesconto: TDBEdit
+        Left = 24
+        Top = 302
+        Width = 481
+        Height = 36
+        DataField = 'valor_abatido'
+        DataSource = DataSource1
+        TabOrder = 10
+      end
+      object edtDetalhes: TDBEdit
+        Left = 24
+        Top = 386
+        Width = 481
+        Height = 36
+        DataField = 'detalhes'
+        DataSource = DataSource2
+        ImeName = 'Portuguese (Brazilian ABNT)'
+        TabOrder = 11
+      end
+      object RadioGroup: TDBRadioGroup
+        Left = 24
+        Top = 524
+        Width = 481
+        Height = 125
+        BiDiMode = bdLeftToRight
+        Caption = 'Meio'
+        Columns = 2
+        DataField = 'meio'
+        DataSource = DataSource2
+        Items.Strings = (
+          'Dinheiro'
+          'Cart'#227'o de credito'
+          'Cart'#227'o de debito')
+        ParentBiDiMode = False
+        TabOrder = 12
+        Values.Strings = (
+          'A'
+          'C'
+          'D')
+        StyleName = 'Windows'
+      end
+      object DBGrid4: TDBGrid
+        Left = 592
+        Top = 268
+        Width = 481
+        Height = 145
+        DataSource = DataSource3
+        TabOrder = 13
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -20
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'numero_parcela'
+            Title.Caption = 'Parcela'
+            Width = 111
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'valor'
+            Title.Alignment = taCenter
+            Title.Caption = 'Valor'
+            Width = 164
+            Visible = True
+          end
+          item
+            Alignment = taRightJustify
+            Expanded = False
+            FieldName = 'data_vencimento'
+            Title.Alignment = taRightJustify
+            Title.Caption = 'Vencimento'
+            Width = 197
+            Visible = True
+          end>
+      end
+      object edtParcelas: TDBEdit
+        Left = 592
+        Top = 120
+        Width = 481
+        Height = 36
+        DataField = 'qtd_parcelas'
+        DataSource = DataSource2
+        TabOrder = 14
+        StyleName = 'Windows'
       end
     end
     inherited CardPesquisa: TCard
       Width = 1099
-      Height = 674
-      Caption = 'p'
-      ExplicitWidth = 645
-      ExplicitHeight = 620
+      Height = 775
+      Caption = 'pesquisar'
+      ExplicitWidth = 1093
+      ExplicitHeight = 766
       inherited pnlPesquisa: TPanel
         Width = 1099
-        ExplicitWidth = 645
+        ExplicitWidth = 1093
         inherited btnPesquisar: TButton
           Left = 983
-          ExplicitLeft = 529
+          ExplicitLeft = 977
         end
       end
       inherited pnlPesquisaButoes: TPanel
-        Top = 585
+        Top = 686
         Width = 1099
-        ExplicitTop = 531
-        ExplicitWidth = 645
+        ExplicitTop = 677
+        ExplicitWidth = 1093
         inherited btnFechar: TButton
           Left = 983
-          ExplicitLeft = 529
+          ExplicitLeft = 977
         end
       end
       inherited pnlGrid: TPanel
         Width = 665
-        Height = 496
+        Height = 597
         Align = alLeft
         Padding.Top = 40
         Padding.Right = 20
         Padding.Bottom = 20
         ExplicitWidth = 665
-        ExplicitHeight = 501
+        ExplicitHeight = 588
         inherited DBGrid1: TDBGrid
           Top = 40
           Width = 645
-          Height = 200
+          Height = 257
           Align = alTop
-          DataSource = dmContasPagar.DataSource1
           Columns = <
             item
               Expanded = False
@@ -375,11 +422,11 @@ inherited frmContasPagar: TfrmContasPagar
         end
         object DBGrid2: TDBGrid
           Left = 0
-          Top = 276
+          Top = 344
           Width = 645
-          Height = 200
+          Height = 233
           Align = alBottom
-          DataSource = dmContasPagar.DataSource2
+          DataSource = DataSource2
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -418,35 +465,35 @@ inherited frmContasPagar: TfrmContasPagar
         end
         object pnlDetalhes: TPanel
           Left = 0
-          Top = 240
+          Top = 297
           Width = 645
-          Height = 36
+          Height = 47
           Align = alClient
           BevelOuter = bvNone
           Caption = 'Detalhes'
           Padding.Left = 10
           TabOrder = 2
-          ExplicitTop = 200
-          ExplicitHeight = 42
+          ExplicitHeight = 38
         end
       end
       object pnlParcelas: TPanel
         Left = 661
         Top = 89
         Width = 438
-        Height = 496
+        Height = 597
         Align = alRight
         BevelOuter = bvNone
         Padding.Bottom = 20
         TabOrder = 3
-        ExplicitHeight = 501
+        ExplicitLeft = 655
+        ExplicitHeight = 588
         object DBGrid3: TDBGrid
           Left = 0
           Top = 41
           Width = 438
-          Height = 435
+          Height = 536
           Align = alClient
-          DataSource = dmContasPagar.DataSource3
+          DataSource = DataSource3
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -458,21 +505,30 @@ inherited frmContasPagar: TfrmContasPagar
               Expanded = False
               FieldName = 'valor'
               Title.Caption = 'Valor'
-              Width = 71
+              Width = 60
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'numero_parcela'
+              Title.Alignment = taCenter
+              Title.Caption = 'Parcela'
+              Width = 76
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'data_vencimento'
-              Title.Caption = 'Data Vencimento'
-              Width = 172
+              Title.Caption = 'Vencimento'
+              Width = 138
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'data_recebimento'
-              Title.Caption = 'Data Recebimento'
-              Width = 176
+              Title.Caption = 'Recebimento'
+              Width = 144
               Visible = True
             end>
         end
@@ -485,26 +541,27 @@ inherited frmContasPagar: TfrmContasPagar
           BevelOuter = bvNone
           Caption = 'Parcelas'
           TabOrder = 1
-          ExplicitLeft = 7
-          ExplicitTop = -7
-          ExplicitWidth = 266
         end
       end
     end
   end
   inherited ImageList1: TImageList
-    Left = 977
-    Top = 530
+    Left = 769
+    Top = 42
   end
   inherited DataSource1: TDataSource
     DataSet = dmContasPagar.cdsContasPagar
-    Enabled = False
-    Left = 977
-    Top = 458
+    Left = 481
+    Top = 42
   end
   object DataSource2: TDataSource
-    DataSet = dmContasPagar.cdsContasPagarDetalhe
-    Left = 913
-    Top = 498
+    DataSet = dmContasPagar.cdsContasPagarDetalhes
+    Left = 569
+    Top = 42
+  end
+  object DataSource3: TDataSource
+    DataSet = dmContasPagar.cdsContasPagarParcela
+    Left = 678
+    Top = 42
   end
 end

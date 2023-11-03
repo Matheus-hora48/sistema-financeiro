@@ -1,0 +1,223 @@
+object dmContasReceber: TdmContasReceber
+  Height = 637
+  Width = 1000
+  PixelsPerInch = 120
+  object sqlContasReceber: TFDQuery
+    Active = True
+    IndexFieldNames = 'id'
+    DetailFields = 'id'
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select * from contas_receber')
+    Left = 232
+    Top = 16
+  end
+  object dspContasReceber: TDataSetProvider
+    DataSet = sqlContasReceber
+    Left = 232
+    Top = 96
+  end
+  object cdsContasReceber: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspContasReceber'
+    Left = 232
+    Top = 184
+    object cdsContasReceberid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasRecebernumero_documento: TStringField
+      FieldName = 'numero_documento'
+      Origin = 'numero_documento'
+      Required = True
+    end
+    object cdsContasRecebervalor_venda: TFMTBCDField
+      FieldName = 'valor_venda'
+      Origin = 'valor_venda'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasRecebervalor_abatido: TFMTBCDField
+      FieldName = 'valor_abatido'
+      Origin = 'valor_abatido'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasReceberdata_compra: TDateField
+      FieldName = 'data_compra'
+      Origin = 'data_compra'
+      Required = True
+    end
+    object cdsContasReceberdata_cadastro: TDateField
+      FieldName = 'data_cadastro'
+      Origin = 'data_cadastro'
+      Required = True
+    end
+    object cdsContasRecebersqlContasReceberDetalhes: TDataSetField
+      FieldName = 'sqlContasReceberDetalhes'
+    end
+    object cdsContasRecebersqlContasReceberParcela: TDataSetField
+      FieldName = 'sqlContasReceberParcela'
+    end
+  end
+  object DataSource: TDataSource
+    DataSet = sqlContasReceber
+    Left = 232
+    Top = 264
+  end
+  object sqlContasReceberDetalhes: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_conta_receber'
+    MasterSource = DataSource
+    MasterFields = 'id'
+    DetailFields = 'id_conta_receber'
+    ChangeAlertName = 'sqlContasReceberDetalhes'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_receber_detalhes'
+      'where'
+      'contas_receber_detalhes.id_conta_receber = :id')
+    Left = 232
+    Top = 352
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '1'
+      end>
+  end
+  object cdsContasReceberDetalhes: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsContasRecebersqlContasReceberDetalhes
+    Params = <>
+    Left = 456
+    Top = 352
+    object cdsContasReceberDetalhesid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasReceberDetalhesid_conta_receber: TStringField
+      FieldName = 'id_conta_receber'
+      Origin = 'id_conta_receber'
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasReceberDetalhesdetalhes: TStringField
+      FieldName = 'detalhes'
+      Origin = 'detalhes'
+      Required = True
+      Size = 200
+    end
+    object cdsContasReceberDetalhesusuario: TStringField
+      FieldName = 'usuario'
+      Origin = 'usuario'
+      Required = True
+      Size = 50
+    end
+    object cdsContasReceberDetalhesmeio: TStringField
+      FieldName = 'meio'
+      Origin = 'meio'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+    object cdsContasReceberDetalhesstatus: TStringField
+      FieldName = 'status'
+      Origin = 'status'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+    object cdsContasReceberDetalhesqtd_parcelas: TIntegerField
+      FieldName = 'qtd_parcelas'
+      Origin = 'qtd_parcelas'
+      Required = True
+    end
+  end
+  object sqlContasReceberParcela: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_conta_receber'
+    MasterSource = DataSource
+    MasterFields = 'id'
+    DetailFields = 'id_conta_receber'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_receber_parcelas'
+      'where'
+      'contas_receber_parcelas.id_conta_receber= :id')
+    Left = 232
+    Top = 440
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '1'
+      end>
+  end
+  object cdsContasReceberParcela: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsContasRecebersqlContasReceberParcela
+    Params = <>
+    Left = 456
+    Top = 440
+    object cdsContasReceberParcelaid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasReceberParcelaid_conta_receber: TStringField
+      FieldName = 'id_conta_receber'
+      Origin = 'id_conta_receber'
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasReceberParceladata_vencimento: TDateField
+      FieldName = 'data_vencimento'
+      Origin = 'data_vencimento'
+      Required = True
+    end
+    object cdsContasReceberParcelavalor: TFMTBCDField
+      FieldName = 'valor'
+      Origin = 'valor'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasReceberParceladata_recebimento: TDateField
+      FieldName = 'data_recebimento'
+      Origin = 'data_recebimento'
+    end
+    object cdsContasReceberParcelanumero_parcela: TIntegerField
+      FieldName = 'numero_parcela'
+      Origin = 'numero_parcela'
+      Required = True
+    end
+  end
+end

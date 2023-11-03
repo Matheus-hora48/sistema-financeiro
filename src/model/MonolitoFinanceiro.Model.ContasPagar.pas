@@ -11,34 +11,34 @@ uses
 type
   TdmContasPagar = class(TDataModule)
     sqlContasPagar: TFDQuery;
-    cdsContasPagar: TClientDataSet;
-    dspContasPagar: TDataSetProvider;
-    sqlContasPagarDetalhe: TFDQuery;
-    dspContasPagarDetalhe: TDataSetProvider;
-    cdsContasPagarDetalhe: TClientDataSet;
+    sqlContasPagarDetalhes: TFDQuery;
     sqlContasPagarParcela: TFDQuery;
-    dspContasPagarParcela: TDataSetProvider;
-    cdsContasPagarParcela: TClientDataSet;
+    DataSource: TDataSource;
+    dspContasPagar: TDataSetProvider;
+    cdsContasPagar: TClientDataSet;
     cdsContasPagarid: TStringField;
     cdsContasPagarnumero_documento: TStringField;
     cdsContasPagarvalor_compra: TFMTBCDField;
     cdsContasPagarvalor_abatido: TFMTBCDField;
     cdsContasPagardata_compra: TDateField;
     cdsContasPagardata_cadastro: TDateField;
-    cdsContasPagarDetalheid: TStringField;
-    cdsContasPagarDetalheid_conta_pagar: TStringField;
-    cdsContasPagarDetalhedetalhes: TStringField;
-    cdsContasPagarDetalheusuario: TStringField;
-    cdsContasPagarDetalhemeio: TStringField;
-    cdsContasPagarDetalhestatus: TStringField;
+    cdsContasPagarsqlContasPagarDetalhes: TDataSetField;
+    cdsContasPagarDetalhes: TClientDataSet;
+    cdsContasPagarDetalhesid: TStringField;
+    cdsContasPagarDetalhesid_conta_pagar: TStringField;
+    cdsContasPagarDetalhesdetalhes: TStringField;
+    cdsContasPagarDetalhesusuario: TStringField;
+    cdsContasPagarDetalhesmeio: TStringField;
+    cdsContasPagarDetalhesstatus: TStringField;
+    cdsContasPagarDetalhesqtd_parcelas: TIntegerField;
+    cdsContasPagarParcela: TClientDataSet;
+    cdsContasPagarsqlContasPagarParcela: TDataSetField;
     cdsContasPagarParcelaid: TStringField;
     cdsContasPagarParcelaid_conta_pagar: TStringField;
     cdsContasPagarParceladata_vencimento: TDateField;
     cdsContasPagarParcelavalor: TFMTBCDField;
     cdsContasPagarParceladata_recebimento: TDateField;
-    DataSource1: TDataSource;
-    DataSource2: TDataSource;
-    DataSource3: TDataSource;
+    cdsContasPagarParcelanumero_parcela: TIntegerField;
   private
     { Private declarations }
   public
@@ -51,6 +51,8 @@ var
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses MonolitoFinanceiro.Model.Conexao;
 
 {$R *.dfm}
 

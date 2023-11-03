@@ -19,12 +19,14 @@ type
     Caixa1: TMenuItem;
     ResumoCaixa1: TMenuItem;
     ContasPagar1: TMenuItem;
+    ContasReceber1: TMenuItem;
     procedure nmuUsuariosClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Caixa1Click(Sender: TObject);
     procedure ResumoCaixa1Click(Sender: TObject);
     procedure ContasPagar1Click(Sender: TObject);
+    procedure ContasReceber1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,7 +44,7 @@ uses MonolitoFinanceiro.View.CadastroPadrao, MonolitoFinanceiro.View.Splash,
   MonolitoFinanceiro.View.Usuarios, MonolitoFinanceiro.View.Login,
   MonolitoFinanceiro.Model.Usuario, MonolitoFinanceiro.View.RedefinirSenha,
   MonolitoFinanceiro.View.Caixa, MonolitoFinanceiro.View.CaixaSaldo,
-  MonolitoFinanceiro.View.ContasPagar;
+  MonolitoFinanceiro.View.ContasPagar, MonolitoFinanceiro.View.ContasReceber;
 
 procedure TfrmPrincipal.Caixa1Click(Sender: TObject);
 begin
@@ -56,9 +58,15 @@ begin
   frmContasPagar.Show;
 end;
 
+procedure TfrmPrincipal.ContasReceber1Click(Sender: TObject);
+begin
+  frmContasReceber := TfrmContasReceber.Create(Application);
+  frmContasReceber.Show;
+end;
+
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
-  
+
 
 
   StatusBar1.Panels.Items[1].Text := 'Usuário: ' + dmUsuarios.GetUsuarioLogado.Nome;

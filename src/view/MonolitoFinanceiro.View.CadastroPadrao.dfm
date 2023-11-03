@@ -94,6 +94,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitWidth = 750
         object Label1: TLabel
           Left = 0
           Top = 5
