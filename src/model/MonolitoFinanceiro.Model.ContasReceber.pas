@@ -12,21 +12,21 @@ uses
 type
   TdmContasReceber = class(TDataModule)
     sqlContasReceber: TFDQuery;
+    sqlContasReceberDetalhes: TFDQuery;
+    sqlContasReceberParcela: TFDQuery;
+    DataSource: TDataSource;
     dspContasReceber: TDataSetProvider;
     cdsContasReceber: TClientDataSet;
-    DataSource: TDataSource;
-    sqlContasReceberDetalhes: TFDQuery;
+    cdsContasReceberDetalhes: TClientDataSet;
+    cdsContasReceberParcela: TClientDataSet;
     cdsContasReceberid: TStringField;
     cdsContasRecebernumero_documento: TStringField;
     cdsContasRecebervalor_venda: TFMTBCDField;
     cdsContasRecebervalor_abatido: TFMTBCDField;
     cdsContasReceberdata_compra: TDateField;
     cdsContasReceberdata_cadastro: TDateField;
-    cdsContasReceberDetalhes: TClientDataSet;
-    sqlContasReceberParcela: TFDQuery;
-    cdsContasReceberParcela: TClientDataSet;
-    cdsContasRecebersqlContasReceberDetalhes: TDataSetField;
     cdsContasRecebersqlContasReceberParcela: TDataSetField;
+    cdsContasRecebersqlContasReceberDetalhes: TDataSetField;
     cdsContasReceberDetalhesid: TStringField;
     cdsContasReceberDetalhesid_conta_receber: TStringField;
     cdsContasReceberDetalhesdetalhes: TStringField;

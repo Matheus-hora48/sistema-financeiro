@@ -126,7 +126,6 @@ object dmContasPagar: TdmContasPagar
     Aggregates = <>
     DataSetField = cdsContasPagarsqlContasPagarDetalhes
     Params = <>
-    ProviderName = 'dspContasPagar'
     Left = 432
     Top = 352
     object cdsContasPagarDetalhesid: TStringField
@@ -180,7 +179,6 @@ object dmContasPagar: TdmContasPagar
     Aggregates = <>
     DataSetField = cdsContasPagarsqlContasPagarParcela
     Params = <>
-    ProviderName = 'dspContasPagar'
     Left = 432
     Top = 432
     object cdsContasPagarParcelaid: TStringField

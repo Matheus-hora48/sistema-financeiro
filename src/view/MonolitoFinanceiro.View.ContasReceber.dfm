@@ -1,21 +1,23 @@
 inherited frmContasReceber: TfrmContasReceber
   Caption = 'Contas Receber'
-  ClientHeight = 737
+  ClientHeight = 768
   ClientWidth = 1151
   OnCreate = FormCreate
+  ExplicitLeft = 3
+  ExplicitTop = 3
   ExplicitWidth = 1163
-  ExplicitHeight = 775
+  ExplicitHeight = 806
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
     Width = 1151
-    Height = 737
+    Height = 768
     ExplicitWidth = 1145
-    ExplicitHeight = 728
+    ExplicitHeight = 759
     inherited CardCadastro: TCard
       Width = 1149
-      Height = 735
+      Height = 766
       ExplicitWidth = 1149
-      ExplicitHeight = 735
+      ExplicitHeight = 766
       object lblDataCompra: TLabel [0]
         Left = 24
         Top = 440
@@ -66,9 +68,9 @@ inherited frmContasReceber: TfrmContasReceber
         Caption = 'Valor Venda'
       end
       inherited Panel1: TPanel
-        Top = 654
+        Top = 685
         Width = 1149
-        ExplicitTop = 654
+        ExplicitTop = 685
         ExplicitWidth = 1149
         inherited btnCancelar: TButton
           Left = 1033
@@ -92,6 +94,7 @@ inherited frmContasReceber: TfrmContasReceber
         ImageMargins.Top = 10
         Images = ImageList1
         TabOrder = 1
+        OnClick = btnGerarParcelasClick
       end
       object DBGrid4: TDBGrid
         Left = 592
@@ -128,7 +131,7 @@ inherited frmContasReceber: TfrmContasReceber
             FieldName = 'data_vencimento'
             Title.Alignment = taRightJustify
             Title.Caption = 'Vencimento'
-            Width = 197
+            Width = 186
             Visible = True
           end>
       end
@@ -182,7 +185,7 @@ inherited frmContasReceber: TfrmContasReceber
       end
       object edtParcelas: TDBEdit
         Left = 592
-        Top = 120
+        Top = 128
         Width = 481
         Height = 36
         DataField = 'qtd_parcelas'
@@ -334,7 +337,7 @@ inherited frmContasReceber: TfrmContasReceber
       end
       object RadioGroup: TDBRadioGroup
         Left = 24
-        Top = 524
+        Top = 516
         Width = 481
         Height = 125
         BiDiMode = bdLeftToRight
@@ -353,13 +356,14 @@ inherited frmContasReceber: TfrmContasReceber
           'C'
           'D')
         StyleName = 'Windows'
+        OnClick = RadioGroupClick
       end
     end
     inherited CardPesquisa: TCard
       Width = 1149
-      Height = 735
+      Height = 766
       ExplicitWidth = 1143
-      ExplicitHeight = 726
+      ExplicitHeight = 757
       inherited pnlPesquisa: TPanel
         Width = 1149
         ExplicitWidth = 1143
@@ -369,24 +373,27 @@ inherited frmContasReceber: TfrmContasReceber
         end
       end
       inherited pnlPesquisaButoes: TPanel
-        Top = 646
+        Top = 677
         Width = 1149
-        ExplicitTop = 637
+        ExplicitTop = 668
         ExplicitWidth = 1143
         inherited btnFechar: TButton
           Left = 1033
           ExplicitLeft = 1027
         end
+        inherited btnIncluir: TButton
+          ExplicitLeft = -6
+        end
       end
       inherited pnlGrid: TPanel
         Width = 705
-        Height = 557
+        Height = 588
         Align = alLeft
         Padding.Top = 40
         Padding.Right = 20
         Padding.Bottom = 20
         ExplicitWidth = 705
-        ExplicitHeight = 548
+        ExplicitHeight = 579
         inherited DBGrid1: TDBGrid
           Top = 40
           Width = 685
@@ -424,7 +431,7 @@ inherited frmContasReceber: TfrmContasReceber
         end
         object DBGrid2: TDBGrid
           Left = 0
-          Top = 328
+          Top = 359
           Width = 685
           Height = 209
           Align = alBottom
@@ -470,25 +477,25 @@ inherited frmContasReceber: TfrmContasReceber
           Left = 0
           Top = 273
           Width = 685
-          Height = 55
+          Height = 86
           Align = alClient
           BevelOuter = bvNone
           Caption = 'Detalhes'
           TabOrder = 2
-          ExplicitHeight = 46
+          ExplicitHeight = 77
         end
       end
       object Panel3: TPanel
         Left = 705
         Top = 89
         Width = 444
-        Height = 557
+        Height = 588
         Align = alClient
         BevelOuter = bvNone
         Padding.Bottom = 20
         TabOrder = 3
         ExplicitWidth = 438
-        ExplicitHeight = 548
+        ExplicitHeight = 579
         object Panel4: TPanel
           Left = 0
           Top = 0
@@ -504,7 +511,7 @@ inherited frmContasReceber: TfrmContasReceber
           Left = 0
           Top = 41
           Width = 444
-          Height = 496
+          Height = 527
           Align = alClient
           DataSource = DataSource3
           TabOrder = 1
@@ -551,14 +558,17 @@ inherited frmContasReceber: TfrmContasReceber
     Top = 34
   end
   inherited DataSource1: TDataSource
+    DataSet = dmContasReceber.cdsContasReceber
     Left = 497
     Top = 34
   end
   object DataSource2: TDataSource
+    DataSet = dmContasReceber.cdsContasReceberDetalhes
     Left = 585
     Top = 33
   end
   object DataSource3: TDataSource
+    DataSet = dmContasReceber.cdsContasReceberParcela
     Left = 673
     Top = 33
   end

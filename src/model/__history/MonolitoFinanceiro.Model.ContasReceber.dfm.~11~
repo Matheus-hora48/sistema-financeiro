@@ -1,0 +1,184 @@
+object dmContasReceber: TdmContasReceber
+  Height = 637
+  Width = 1000
+  PixelsPerInch = 120
+  object sqlContasReceber: TFDQuery
+    Active = True
+    IndexFieldNames = 'id'
+    DetailFields = 'id'
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select * from contas_receber')
+    Left = 232
+    Top = 16
+  end
+  object sqlContasReceberDetalhes: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_conta_receber'
+    MasterSource = DataSource
+    MasterFields = 'id'
+    DetailFields = 'id_conta_receber'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_receber_detalhes'
+      'where'
+      'contas_receber_detalhes.id_conta_receber= :id')
+    Left = 232
+    Top = 352
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '2'
+      end>
+  end
+  object sqlContasReceberParcela: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_conta_receber'
+    MasterSource = DataSource
+    MasterFields = 'id'
+    DetailFields = 'id_conta_receber'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_receber_parcelas'
+      'where'
+      'contas_receber_parcelas.id_conta_receber= :id')
+    Left = 232
+    Top = 432
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '2'
+      end>
+  end
+  object DataSource: TDataSource
+    DataSet = sqlContasReceber
+    Left = 232
+    Top = 264
+  end
+  object dspContasReceber: TDataSetProvider
+    DataSet = sqlContasReceber
+    Left = 232
+    Top = 96
+  end
+  object cdsContasReceber: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspContasReceber'
+    Left = 232
+    Top = 184
+    object cdsContasReceberid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasRecebernumero_documento: TStringField
+      FieldName = 'numero_documento'
+      Origin = 'numero_documento'
+      Required = True
+    end
+    object cdsContasRecebervalor_venda: TFMTBCDField
+      FieldName = 'valor_venda'
+      Origin = 'valor_venda'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasRecebervalor_abatido: TFMTBCDField
+      FieldName = 'valor_abatido'
+      Origin = 'valor_abatido'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasReceberdata_compra: TDateField
+      FieldName = 'data_compra'
+      Origin = 'data_compra'
+      Required = True
+    end
+    object cdsContasReceberdata_cadastro: TDateField
+      FieldName = 'data_cadastro'
+      Origin = 'data_cadastro'
+      Required = True
+    end
+    object cdsContasRecebersqlContasReceberParcela: TDataSetField
+      FieldName = 'sqlContasReceberParcela'
+    end
+    object cdsContasRecebersqlContasReceberDetalhes: TDataSetField
+      FieldName = 'sqlContasReceberDetalhes'
+    end
+  end
+  object cdsContasReceberDetalhes: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspContasReceber'
+    Left = 432
+    Top = 352
+    object cdsContasReceberDetalhesid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasReceberDetalhesnumero_documento: TStringField
+      FieldName = 'numero_documento'
+      Origin = 'numero_documento'
+      Required = True
+    end
+    object cdsContasReceberDetalhesvalor_venda: TFMTBCDField
+      FieldName = 'valor_venda'
+      Origin = 'valor_venda'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasReceberDetalhesvalor_abatido: TFMTBCDField
+      FieldName = 'valor_abatido'
+      Origin = 'valor_abatido'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasReceberDetalhesdata_compra: TDateField
+      FieldName = 'data_compra'
+      Origin = 'data_compra'
+      Required = True
+    end
+    object cdsContasReceberDetalhesdata_cadastro: TDateField
+      FieldName = 'data_cadastro'
+      Origin = 'data_cadastro'
+      Required = True
+    end
+    object cdsContasReceberDetalhessqlContasReceberParcela: TDataSetField
+      FieldName = 'sqlContasReceberParcela'
+    end
+    object cdsContasReceberDetalhessqlContasReceberDetalhes: TDataSetField
+      FieldName = 'sqlContasReceberDetalhes'
+    end
+  end
+  object cdsContasReceberParcela: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsContasReceberDetalhessqlContasReceberParcela
+    Params = <>
+    ProviderName = 'dspContasReceber'
+    Left = 432
+    Top = 432
+  end
+end

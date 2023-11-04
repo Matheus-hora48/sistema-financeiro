@@ -12,6 +12,59 @@ object dmContasReceber: TdmContasReceber
     Left = 232
     Top = 16
   end
+  object sqlContasReceberDetalhes: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_conta_receber'
+    MasterSource = DataSource
+    MasterFields = 'id'
+    DetailFields = 'id_conta_receber'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_receber_detalhes'
+      'where'
+      'contas_receber_detalhes.id_conta_receber= :id')
+    Left = 232
+    Top = 352
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '2'
+      end>
+  end
+  object sqlContasReceberParcela: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_conta_receber'
+    MasterSource = DataSource
+    MasterFields = 'id'
+    DetailFields = 'id_conta_receber'
+    Connection = dmConexao.SQLConexao
+    FetchOptions.AssignedValues = [evDetailCascade]
+    FetchOptions.DetailCascade = True
+    SQL.Strings = (
+      'select * from contas_receber_parcelas'
+      'where'
+      'contas_receber_parcelas.id_conta_receber= :id')
+    Left = 232
+    Top = 432
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftFixedChar
+        ParamType = ptInput
+        Size = 36
+        Value = '2'
+      end>
+  end
+  object DataSource: TDataSource
+    DataSet = sqlContasReceber
+    Left = 232
+    Top = 264
+  end
   object dspContasReceber: TDataSetProvider
     DataSet = sqlContasReceber
     Left = 232
@@ -61,49 +114,19 @@ object dmContasReceber: TdmContasReceber
       Origin = 'data_cadastro'
       Required = True
     end
-    object cdsContasRecebersqlContasReceberDetalhes: TDataSetField
-      FieldName = 'sqlContasReceberDetalhes'
-    end
     object cdsContasRecebersqlContasReceberParcela: TDataSetField
       FieldName = 'sqlContasReceberParcela'
     end
-  end
-  object DataSource: TDataSource
-    DataSet = sqlContasReceber
-    Left = 232
-    Top = 264
-  end
-  object sqlContasReceberDetalhes: TFDQuery
-    Active = True
-    IndexFieldNames = 'id_conta_receber'
-    MasterSource = DataSource
-    MasterFields = 'id'
-    DetailFields = 'id_conta_receber'
-    ChangeAlertName = 'sqlContasReceberDetalhes'
-    Connection = dmConexao.SQLConexao
-    FetchOptions.AssignedValues = [evDetailCascade]
-    FetchOptions.DetailCascade = True
-    SQL.Strings = (
-      'select * from contas_receber_detalhes'
-      'where'
-      'contas_receber_detalhes.id_conta_receber = :id')
-    Left = 232
-    Top = 352
-    ParamData = <
-      item
-        Name = 'ID'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 36
-        Value = '2'
-      end>
+    object cdsContasRecebersqlContasReceberDetalhes: TDataSetField
+      FieldName = 'sqlContasReceberDetalhes'
+    end
   end
   object cdsContasReceberDetalhes: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsContasRecebersqlContasReceberDetalhes
     Params = <>
-    ProviderName = 'dspContasReceber'
-    Left = 456
+    Left = 432
     Top = 352
     object cdsContasReceberDetalhesid: TStringField
       FieldName = 'id'
@@ -152,37 +175,13 @@ object dmContasReceber: TdmContasReceber
       Required = True
     end
   end
-  object sqlContasReceberParcela: TFDQuery
-    Active = True
-    IndexFieldNames = 'id_conta_receber'
-    MasterSource = DataSource
-    MasterFields = 'id'
-    DetailFields = 'id_conta_receber'
-    Connection = dmConexao.SQLConexao
-    FetchOptions.AssignedValues = [evDetailCascade]
-    FetchOptions.DetailCascade = True
-    SQL.Strings = (
-      'select * from contas_receber_parcelas'
-      'where'
-      'contas_receber_parcelas.id_conta_receber= :id')
-    Left = 232
-    Top = 440
-    ParamData = <
-      item
-        Name = 'ID'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 36
-        Value = '2'
-      end>
-  end
   object cdsContasReceberParcela: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsContasRecebersqlContasReceberParcela
     Params = <>
-    ProviderName = 'dspContasReceber'
-    Left = 456
-    Top = 440
+    Left = 432
+    Top = 432
     object cdsContasReceberParcelaid: TStringField
       FieldName = 'id'
       Origin = 'id'
