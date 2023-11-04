@@ -4,13 +4,14 @@ inherited frmContasReceber: TfrmContasReceber
   ClientWidth = 1151
   OnCreate = FormCreate
   ExplicitLeft = 3
-  ExplicitTop = 3
+  ExplicitTop = -202
   ExplicitWidth = 1163
   ExplicitHeight = 806
   TextHeight = 28
   inherited PnlPrincipal: TCardPanel
     Width = 1151
     Height = 768
+    ActiveCard = CardCadastro
     ExplicitWidth = 1145
     ExplicitHeight = 759
     inherited CardCadastro: TCard
@@ -78,7 +79,7 @@ inherited frmContasReceber: TfrmContasReceber
         end
         inherited btnSalvar: TButton
           Left = 917
-          ExplicitLeft = 917
+          ExplicitLeft = 911
         end
       end
       object btnGerarParcelas: TButton

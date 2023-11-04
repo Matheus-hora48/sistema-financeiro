@@ -116,19 +116,19 @@ begin
   if Trim(edtNDocumento.Text) = '' then
   begin
     SetarFocuPrimeiroCntrole(edtNDocumento);
-    LError := LError + 'O Campo Numero do documento nÃ£o pode ser vazio' + sLineBreak;
+    LError := LError + 'O Campo Numero do documento não pode ser vazio' + sLineBreak;
   end;
 
   if Trim(edtValorVenda.Text) = '' then
   begin
     SetarFocuPrimeiroCntrole(edtValorVenda);
-    LError := LError + 'O Campo Valo da venda nÃ£o pode ser vazio' + sLinebreak;
+    LError := LError + 'O Campo Valo da venda não pode ser vazio' + sLinebreak;
   end;
 
   if Trim(edtDesconto.Text) = '' then
   begin
     SetarFocuPrimeiroCntrole(edtDesconto);
-    LError := LError + 'O Campo Desconto nÃ£o pode ser vazio' + sLinebreak;
+    LError := LError + 'O Campo Desconto não pode ser vazio' + sLinebreak;
   end;
   if not (StrToFloat(edtParcelas.text) > 0) then
   begin
@@ -142,13 +142,13 @@ begin
   2: LMeio := 'D';
   else
     begin
-      LError := LError + 'Por favor, selecione uma opÃ§Ã£o no RadioGroup.' + sLinebreak;
+      LError := LError + 'Por favor, selecione uma opção no RadioGroup.' + sLinebreak;
     end;
   end;
 
   if not LError.IsEmpty then
   begin
-    Application.MessageBox(PChar( LError ),'AtenÃ§Ã£o',MB_OK + MB_ICONEXCLAMATION);
+    Application.MessageBox(PChar( LError ),'Atenção',MB_OK + MB_ICONEXCLAMATION);
 
     if Assigned( LControlFocus ) then
        LControlFocus.SetFocus;
@@ -159,7 +159,7 @@ begin
   DAO.cdsContasReceber.FindField('data_compra').AsDateTime := dtpDataCompra.Date;
 
   DAO.cdsContasReceberDetalhes.FindField('id').AsString := TUtilitarios.GetID;
-  DAO.cdsContasReceberDetalhes.FindField('id_conta_receber').AsString := DAO.cdsContasReceber.FindField('id').AsString;
+  DAO.cdsContasReceberDetalhes.FindField('id_conta_pagar').AsString := DAO.cdsContasReceber.FindField('id').AsString;
   DAO.cdsContasReceberDetalhes.FindField('meio').AsString := LMeio;
   DAO.cdsContasReceberDetalhes.FindField('status').AsString := LStatus;
 
@@ -202,7 +202,7 @@ begin
   begin
     DAO.cdsContasReceberParcela.Append;
     DAO.cdsContasReceberParcela.FindField('id').AsString := TUtilitarios.GetID;
-    DAO.cdsContasReceberParcela.FindField('id_conta_receber').AsString := DAO.cdsContasReceber.FindField('id').AsString;
+    DAO.cdsContasReceberParcela.FindField('id_conta_pagar').AsString := DAO.cdsContasReceber.FindField('id').AsString;
     DAO.cdsContasReceberParcela.FindField('data_vencimento').AsDateTime := data_vencimento;
     DAO.cdsContasReceberParcela.FindField('valor').AsBCD := valor_parcela;
     DAO.cdsContasReceberParcela.FindField('numero_parcela').AsInteger := i;

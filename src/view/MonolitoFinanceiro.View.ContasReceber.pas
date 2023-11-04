@@ -159,7 +159,7 @@ begin
   DAO.cdsContasReceber.FindField('data_compra').AsDateTime := dtpDataCompra.Date;
 
   DAO.cdsContasReceberDetalhes.FindField('id').AsString := TUtilitarios.GetID;
-  DAO.cdsContasReceberDetalhes.FindField('id_conta_pagar').AsString := DAO.cdsContasReceber.FindField('id').AsString;
+  DAO.cdsContasReceberDetalhes.FindField('id_conta_receber').AsString := DAO.cdsContasReceber.FindField('id').AsString;
   DAO.cdsContasReceberDetalhes.FindField('meio').AsString := LMeio;
   DAO.cdsContasReceberDetalhes.FindField('status').AsString := LStatus;
 
@@ -202,7 +202,7 @@ begin
   begin
     DAO.cdsContasReceberParcela.Append;
     DAO.cdsContasReceberParcela.FindField('id').AsString := TUtilitarios.GetID;
-    DAO.cdsContasReceberParcela.FindField('id_conta_pagar').AsString := DAO.cdsContasReceber.FindField('id').AsString;
+    DAO.cdsContasReceberParcela.FindField('id_conta_receber').AsString := DAO.cdsContasReceber.FindField('id').AsString;
     DAO.cdsContasReceberParcela.FindField('data_vencimento').AsDateTime := data_vencimento;
     DAO.cdsContasReceberParcela.FindField('valor').AsBCD := valor_parcela;
     DAO.cdsContasReceberParcela.FindField('numero_parcela').AsInteger := i;
